@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { compileMDX } from '@next/mdx-remote/rsc'
+import { compileMDX } from 'next-mdx-remote/rsc'
 import rehypePrettyCode from 'rehype-pretty-code'
 import { Container } from '@/components/Container'
 import { TagPill } from '@/components/TagPill'

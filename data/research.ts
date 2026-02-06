@@ -2,15 +2,39 @@ import { ResearchInterest } from '@/types'
 
 export const researchInterests: ResearchInterest[] = [
   {
-    id: 'food-automation',
-    title: 'Digitalization & Automation in Food Science',
+    id: 'lab-automation',
+    title: 'Lab Automation',
     description:
-      'Building data-driven and sustainable food systems through lab automation, agentic food formulation, and structural representation of food materials.',
+      'Enabling scalable, reproducible food experimentation through advanced sensing, robotic handling, and high-throughput physical characterization.',
     bullets: [
-      'Lab automation of solid food testing',
-      'Agentic systems for food formulation',
-      'Structural representation of food materials',
+      'Advanced material sensing',
+      'Contactless mixing systems',
+      'High-throughput texture analysis',
     ],
-    tags: ['Lab Automation', 'Agentic Design', 'Food Structures'],
+    tags: ['Automation', 'Sensing', 'Characterization'],
+  },
+  {
+    id: 'agents-for-food-design',
+    title: 'Agents for Food Design',
+    description:
+      'Developing intelligent agentic systems that reason, design, and monitor food products across formulation, nutrition, and quality dimensions.',
+    bullets: [
+      'Sugar-reduction agents',
+      'Meal monitoring agents',
+      'Quality inspection agents',
+    ],
+    tags: ['Agentic Systems', 'Formulation', 'Quality'],
+  },
+  {
+    id: 'structural-representation',
+    title: 'Structural Representation of Food Materials',
+    description:
+      'Creating data-driven representations of food structure that connect composition, processing, and functionality.',
+    bullets: [
+      'Unified food structure datasets',
+      'Multimodal machine learning',
+      'Structure-property modeling',
+    ],
+    tags: ['Food Structure', 'Multimodal ML', 'Modeling'],
   },
 ]

@@ -39,7 +39,7 @@ export default function HomePage() {
             <div className="flex-shrink-0 md:ml-auto">
               <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-lg bg-accent-50">
                 <Image
-                  src="/images/yizhou-ma-portrait.svg"
+                  src="/images/Headshot3.jpg"
                   alt="Portrait of Yizhou Ma"
                   fill
                   className="object-cover"

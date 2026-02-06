@@ -54,24 +54,6 @@ export default function ResearchPage() {
         </Container>
       </section>
 
-      {/* Collaboration CTA */}
-      <section className="py-12 border-t border-gray-200">
-        <Container>
-          <div className="bg-accent-50 rounded-xl p-8 text-center">
-            <h2 className="text-xl font-semibold text-gray-900 mb-3">Interested in collaborating?</h2>
-            <p className="text-gray-600 mb-4 max-w-lg mx-auto">
-              I am always open to discussing research ideas, potential collaborations, and speaking
-              opportunities.
-            </p>
-            <a
-              href="mailto:yizhou.ma@wur.nl"
-              className="inline-flex items-center justify-center px-4 py-2 bg-accent-600 text-white font-medium rounded-lg hover:bg-accent-700 transition-colors"
-            >
-              Get in touch
-            </a>
-          </div>
-        </Container>
-      </section>
     </>
   )
 }

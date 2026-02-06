@@ -46,14 +46,6 @@ export function Footer() {
             &copy; {currentYear} Yizhou Ma. All rights reserved.
           </div>
 
-          {/* Email */}
-          <a
-            href="mailto:yizhou.ma@wur.nl"
-            className="text-sm text-gray-600 hover:text-accent-600 transition-colors"
-          >
-            yizhou.ma@wur.nl
-          </a>
-
           {/* Social Links */}
           <div className="flex items-center space-x-4">
             {socialLinks.map((link) => (

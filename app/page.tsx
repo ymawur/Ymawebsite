@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { Card } from '@/components/Card'
@@ -16,24 +17,35 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-accent-50/50 to-white">
         <Container>
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Yizhou Ma PhD</h1>
-            <p className="text-xl text-gray-600 mb-6">Assistant professor at Wageningen University</p>
-            <p className="text-gray-700 leading-relaxed mb-8">
-              Digitalization & Automation in Food Science at WUR. My professional and personal
-              pursuits are built upon global responsibility, data-driven research, and sustainable
-              system design. In my research, I work on lab automation of solid food testing, agentic
-              food formulation, and structural representation of food materials.
-            </p>
-            <p className="text-gray-700 leading-relaxed mb-8">
-              Research: Lab automation, agents for food design, structural representation of food
-              materials
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button href="/outputs">View outputs</Button>
-              <Button href="/blog" variant="secondary">
-                Read blog
-              </Button>
+          <div className="flex flex-col-reverse md:flex-row md:items-center gap-10">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Yizhou Ma</h1>
+              <p className="text-xl text-gray-600 mb-6">
+                Assistant professor at Wageningen University
+              </p>
+              <p className="text-gray-700 leading-relaxed mb-8">
+                Digitalization & Automation in Food Science at WUR. My professional and personal
+                pursuits are built upon global responsibility, data-driven research, and sustainable
+                system design. In my research, I work on lab automation of solid food testing,
+                agentic food formulation, and structural representation of food materials.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Button href="/outputs">View outputs</Button>
+                <Button href="/blog" variant="secondary">
+                  Read blog
+                </Button>
+              </div>
+            </div>
+            <div className="flex-shrink-0 md:ml-auto">
+              <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-lg bg-accent-50">
+                <Image
+                  src="/images/yizhou-ma-portrait.svg"
+                  alt="Portrait of Yizhou Ma"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </Container>

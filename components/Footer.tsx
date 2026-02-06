@@ -43,7 +43,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}
           <div className="text-sm text-gray-600">
-            &copy; {currentYear} Yizhou Ma PhD. All rights reserved.
+            &copy; {currentYear} Yizhou Ma. All rights reserved.
           </div>
 
           {/* Email */}

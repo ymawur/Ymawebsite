@@ -5,11 +5,11 @@ import { Footer } from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Yizhou Ma PhD | Personal Website',
-    template: '%s | Yizhou Ma PhD',
+    default: 'Yizhou Ma | Personal Website',
+    template: '%s | Yizhou Ma',
   },
   description:
-    'Personal website of Yizhou Ma PhD. Digitalization and automation in food science at Wageningen University.',
+    'Personal website of Yizhou Ma. Digitalization and automation in food science at Wageningen University.',
   keywords: [
     'food science',
     'digitalization',
@@ -17,20 +17,20 @@ export const metadata: Metadata = {
     'lab automation',
     'agentic food formulation',
   ],
-  authors: [{ name: 'Yizhou Ma PhD' }],
+  authors: [{ name: 'Yizhou Ma' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'Yizhou Ma PhD',
-    title: 'Yizhou Ma PhD | Personal Website',
+    siteName: 'Yizhou Ma',
+    title: 'Yizhou Ma | Personal Website',
     description:
-      'Personal website of Yizhou Ma PhD. Digitalization and automation in food science at Wageningen University.',
+      'Personal website of Yizhou Ma. Digitalization and automation in food science at Wageningen University.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Yizhou Ma PhD | Personal Website',
+    title: 'Yizhou Ma | Personal Website',
     description:
-      'Personal website of Yizhou Ma PhD. Digitalization and automation in food science at Wageningen University.',
+      'Personal website of Yizhou Ma. Digitalization and automation in food science at Wageningen University.',
   },
   robots: {
     index: true,

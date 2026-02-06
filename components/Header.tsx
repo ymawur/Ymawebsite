@@ -64,7 +64,7 @@ export function Header() {
             href="/"
             className="text-lg font-semibold text-gray-900 hover:text-accent-600 transition-colors"
           >
-            Yizhou Ma PhD
+            Yizhou Ma
           </Link>
 
           {/* Desktop Navigation */}

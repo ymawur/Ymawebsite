@@ -2,7 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { Card } from '@/components/Card'
-import { TagPill } from '@/components/TagPill'
 import { outputs } from '@/data/outputs'
 
 export default function HomePage() {
@@ -134,21 +133,16 @@ export default function HomePage() {
 
           <div className="space-y-4">
             {selectedOutputs.map((output) => (
-              <Card key={output.id} href="/outputs">
+              <Card key={output.id} href={`/outputs/${output.id}`}>
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1">{output.title}</h3>
-                    <p className="text-sm text-gray-600">
-                      {output.authors.join(', ')} &bull; {output.venue}
-                    </p>
+                    <p className="text-sm text-gray-600">{output.headline}</p>
                   </div>
-                  <TagPill>{output.category}</TagPill>
                 </div>
-                <div className="flex flex-wrap gap-1.5 mt-3">
-                  {output.tags.slice(0, 4).map((tag) => (
-                    <TagPill key={tag}>{tag}</TagPill>
-                  ))}
-                </div>
+                <span className="mt-3 inline-flex text-sm font-medium text-accent-600">
+                  View project &rarr;
+                </span>
               </Card>
             ))}
           </div>

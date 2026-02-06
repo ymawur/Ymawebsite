@@ -1,0 +1,19 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" rx="32" fill="#F3F4F6"/>
+  <rect x="80" y="80" width="1040" height="515" rx="24" fill="#E5E7EB"/>
+  <path
+    d="M310 394L420 284L525 389L590 324L710 444H310Z"
+    fill="#D1D5DB"
+  />
+  <circle cx="458" cy="250" r="52" fill="#D1D5DB"/>
+  <text
+    x="600"
+    y="520"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-size="32"
+    fill="#9CA3AF"
+  >
+    Project image placeholder
+  </text>
+</svg>

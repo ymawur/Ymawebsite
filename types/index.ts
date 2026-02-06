@@ -16,11 +16,12 @@ export type OutputCategory = 'Publications' | 'Talks' | 'Software' | 'Datasets' 
 export interface Output {
   id: string
   title: string
-  year: number
-  authors: string[]
-  venue?: string
-  category: OutputCategory
-  tags: string[]
+  headline: string
+  description: string
+  image: {
+    src: string
+    alt: string
+  }
   links: OutputLink[]
   selected?: boolean
 }

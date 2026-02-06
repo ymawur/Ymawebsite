@@ -8,6 +8,7 @@ const navItems = [
   { href: '/', label: 'Home' },
   { href: '/research', label: 'Research' },
   { href: '/outputs', label: 'Projects' },
+  { href: '/collaborate', label: 'Collaborate' },
 ]
 
 export function Header() {

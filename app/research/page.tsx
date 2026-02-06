@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Container } from '@/components/Container'
 import { Card } from '@/components/Card'
-import { TagPill } from '@/components/TagPill'
 import { researchInterests } from '@/data/research'
 
 export const metadata: Metadata = {
@@ -43,17 +42,11 @@ export default function ResearchPage() {
                   ))}
                 </ul>
 
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-gray-100">
-                  {interest.tags.map((tag) => (
-                    <TagPill key={tag}>{tag}</TagPill>
-                  ))}
-                </div>
               </Card>
             ))}
           </div>
         </Container>
       </section>
-
     </>
   )
 }

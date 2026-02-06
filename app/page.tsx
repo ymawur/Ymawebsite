@@ -2,9 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { Card } from '@/components/Card'
-import { Button } from '@/components/Button'
 import { TagPill } from '@/components/TagPill'
-import { researchInterests } from '@/data/research'
 import { outputs } from '@/data/outputs'
 
 export default function HomePage() {
@@ -27,9 +25,6 @@ export default function HomePage() {
                 system design. In my research, I work on lab automation of solid food testing,
                 agentic food formulation, and structural representation of food materials.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <Button href="/outputs">View outputs</Button>
-              </div>
             </div>
             <div className="flex-shrink-0 md:ml-auto">
               <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-lg bg-accent-50">
@@ -47,7 +42,7 @@ export default function HomePage() {
       </section>
 
       {/* Section Cards */}
-      <section className="py-12">
+      <section className="pb-12 -mt-6">
         <Container>
           <div className="grid md:grid-cols-3 gap-6">
             <Card href="/research">
@@ -97,6 +92,28 @@ export default function HomePage() {
               <p className="text-sm text-gray-600">
                 Research outputs and artifacts from digitalization and automation in food science.
               </p>
+            </Card>
+
+            <Card href="/collaborate">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 bg-accent-100 rounded-lg">
+                  <svg
+                    className="w-5 h-5 text-accent-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 10h.01M12 10h.01M16 10h.01M9 16h6m5 2a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h4l2 2h6a2 2 0 012 2v10z"
+                    />
+                  </svg>
+                </div>
+                <h2 className="text-lg font-semibold text-gray-900">Collaborate</h2>
+              </div>
+              <p className="text-sm text-gray-600">Let's get in touch and collaborate</p>
             </Card>
           </div>
         </Container>

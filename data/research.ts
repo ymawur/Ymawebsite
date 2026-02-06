@@ -37,4 +37,16 @@ export const researchInterests: ResearchInterest[] = [
     ],
     tags: ['Food Structure', 'Multimodal ML', 'Modeling'],
   },
+  {
+    id: 'emerging-scientific-ai-models',
+    title: 'Emerging Scientific AI Models for Food',
+    description:
+      'Connecting the most relevant foundation models to experimental food science data across molecular, microstructural, and macroscopic scales.',
+    bullets: [
+      'Protein foundation models for bio-functionality',
+      'Chemical language models for flavor and aroma identifications',
+      'Microscopy foundation models for food microstructure',
+    ],
+    tags: [],
+  },
 ]

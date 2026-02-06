@@ -7,7 +7,7 @@ import { researchInterests } from '@/data/research'
 export const metadata: Metadata = {
   title: 'Research Interests',
   description:
-    'Explore my research interests in machine learning, natural language processing, computer vision, and responsible AI.',
+    'Digitalization and automation in food science, including lab automation, agentic formulation, and structural representation.',
 }
 
 export default function ResearchPage() {
@@ -18,8 +18,8 @@ export default function ResearchPage() {
         <Container>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Research Interests</h1>
           <p className="text-lg text-gray-600 max-w-2xl">
-            My research spans multiple areas of artificial intelligence, with a focus on building
-            systems that are both powerful and responsible.
+            My research focuses on digitalization and automation in food science, emphasizing
+            global responsibility, data-driven research, and sustainable system design.
           </p>
         </Container>
       </section>
@@ -54,24 +54,6 @@ export default function ResearchPage() {
         </Container>
       </section>
 
-      {/* Collaboration CTA */}
-      <section className="py-12 border-t border-gray-200">
-        <Container>
-          <div className="bg-accent-50 rounded-xl p-8 text-center">
-            <h2 className="text-xl font-semibold text-gray-900 mb-3">Interested in collaborating?</h2>
-            <p className="text-gray-600 mb-4 max-w-lg mx-auto">
-              I am always open to discussing research ideas, potential collaborations, and speaking
-              opportunities.
-            </p>
-            <a
-              href="mailto:jane.researcher@example.com"
-              className="inline-flex items-center justify-center px-4 py-2 bg-accent-600 text-white font-medium rounded-lg hover:bg-accent-700 transition-colors"
-            >
-              Get in touch
-            </a>
-          </div>
-        </Container>
-      </section>
     </>
   )
 }

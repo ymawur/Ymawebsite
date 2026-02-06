@@ -2,55 +2,39 @@ import { ResearchInterest } from '@/types'
 
 export const researchInterests: ResearchInterest[] = [
   {
-    id: 'machine-learning',
-    title: 'Machine Learning & Deep Learning',
+    id: 'lab-automation',
+    title: 'Lab Automation',
     description:
-      'Developing robust and interpretable machine learning models with applications in real-world problem solving. Focus on neural network architectures and their theoretical foundations.',
+      'Enabling scalable, reproducible food experimentation through advanced sensing, robotic handling, and high-throughput physical characterization.',
     bullets: [
-      'Neural network optimization and regularization techniques',
-      'Representation learning and feature extraction methods',
-      'Model interpretability and explainable AI',
-      'Transfer learning and domain adaptation',
+      'Advanced material sensing',
+      'Contactless mixing systems',
+      'High-throughput texture analysis',
     ],
-    tags: ['Neural Networks', 'Optimization', 'XAI', 'Transfer Learning'],
+    tags: ['Automation', 'Sensing', 'Characterization'],
   },
   {
-    id: 'natural-language',
-    title: 'Natural Language Processing',
+    id: 'agents-for-food-design',
+    title: 'Agents for Food Design',
     description:
-      'Exploring computational approaches to understanding and generating human language. Research spans from foundational linguistic analysis to large-scale language model applications.',
+      'Developing intelligent agentic systems that reason, design, and monitor food products across formulation, nutrition, and quality dimensions.',
     bullets: [
-      'Transformer architectures and attention mechanisms',
-      'Low-resource language modeling',
-      'Multilingual and cross-lingual NLP',
-      'Text summarization and information extraction',
+      'Sugar-reduction agents',
+      'Meal monitoring agents',
+      'Quality inspection agents',
     ],
-    tags: ['NLP', 'Transformers', 'LLMs', 'Computational Linguistics'],
+    tags: ['Agentic Systems', 'Formulation', 'Quality'],
   },
   {
-    id: 'computer-vision',
-    title: 'Computer Vision & Perception',
+    id: 'structural-representation',
+    title: 'Structural Representation of Food Materials',
     description:
-      'Investigating visual understanding systems that can perceive and interpret the world through images and video. Emphasis on efficiency and practical deployment.',
+      'Creating data-driven representations of food structure that connect composition, processing, and functionality.',
     bullets: [
-      'Object detection and semantic segmentation',
-      'Visual representation learning',
-      'Multi-modal learning combining vision and language',
-      'Efficient model design for edge devices',
+      'Unified food structure datasets',
+      'Multimodal machine learning',
+      'Structure-property modeling',
     ],
-    tags: ['Computer Vision', 'Segmentation', 'Multi-modal', 'Edge AI'],
-  },
-  {
-    id: 'responsible-ai',
-    title: 'Responsible AI & Ethics',
-    description:
-      'Studying the societal implications of AI systems and developing frameworks for fair, transparent, and accountable machine learning deployment.',
-    bullets: [
-      'Algorithmic fairness and bias mitigation',
-      'Privacy-preserving machine learning',
-      'AI governance and policy frameworks',
-      'Human-AI collaboration and interaction',
-    ],
-    tags: ['AI Ethics', 'Fairness', 'Privacy', 'Governance'],
+    tags: ['Food Structure', 'Multimodal ML', 'Modeling'],
   },
 ]

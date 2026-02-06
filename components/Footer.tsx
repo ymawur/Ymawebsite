@@ -43,16 +43,8 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}
           <div className="text-sm text-gray-600">
-            &copy; {currentYear} Jane Researcher. All rights reserved.
+            &copy; {currentYear} Yizhou Ma. All rights reserved.
           </div>
-
-          {/* Email */}
-          <a
-            href="mailto:jane.researcher@example.com"
-            className="text-sm text-gray-600 hover:text-accent-600 transition-colors"
-          >
-            jane.researcher@example.com
-          </a>
 
           {/* Social Links */}
           <div className="flex items-center space-x-4">

@@ -5,26 +5,32 @@ import { Footer } from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Jane Researcher | Personal Website',
-    template: '%s | Jane Researcher',
+    default: 'Yizhou Ma | Personal Website',
+    template: '%s | Yizhou Ma',
   },
   description:
-    'Personal website of Jane Researcher. Exploring machine learning, natural language processing, and responsible AI.',
-  keywords: ['machine learning', 'NLP', 'AI research', 'deep learning', 'responsible AI'],
-  authors: [{ name: 'Jane Researcher' }],
+    'Personal website of Yizhou Ma. Digitalization and automation in food science at Wageningen University.',
+  keywords: [
+    'food science',
+    'digitalization',
+    'automation',
+    'lab automation',
+    'agentic food formulation',
+  ],
+  authors: [{ name: 'Yizhou Ma' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'Jane Researcher',
-    title: 'Jane Researcher | Personal Website',
+    siteName: 'Yizhou Ma',
+    title: 'Yizhou Ma | Personal Website',
     description:
-      'Personal website of Jane Researcher. Exploring machine learning, natural language processing, and responsible AI.',
+      'Personal website of Yizhou Ma. Digitalization and automation in food science at Wageningen University.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jane Researcher | Personal Website',
+    title: 'Yizhou Ma | Personal Website',
     description:
-      'Personal website of Jane Researcher. Exploring machine learning, natural language processing, and responsible AI.',
+      'Personal website of Yizhou Ma. Digitalization and automation in food science at Wageningen University.',
   },
   robots: {
     index: true,

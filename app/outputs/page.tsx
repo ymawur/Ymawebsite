@@ -69,8 +69,8 @@ export default function OutputsPage() {
         <Container>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Outputs</h1>
           <p className="text-lg text-gray-600 max-w-2xl">
-            A collection of my publications, talks, software projects, and datasets from my research
-            journey.
+            A collection of publications, software, and related artifacts from my work in food
+            science digitalization and automation.
           </p>
         </Container>
       </section>

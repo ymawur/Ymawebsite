@@ -6,10 +6,8 @@ import { Button } from '@/components/Button'
 import { TagPill } from '@/components/TagPill'
 import { researchInterests } from '@/data/research'
 import { outputs } from '@/data/outputs'
-import { getAllBlogPosts } from '@/lib/blog'
 
 export default function HomePage() {
-  const latestPosts = getAllBlogPosts().slice(0, 3)
   const selectedOutputs = outputs.filter((o) => o.selected).slice(0, 3)
 
   return (
@@ -31,9 +29,6 @@ export default function HomePage() {
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button href="/outputs">View outputs</Button>
-                <Button href="/blog" variant="secondary">
-                  Read blog
-                </Button>
               </div>
             </div>
             <div className="flex-shrink-0 md:ml-auto">
@@ -97,94 +92,21 @@ export default function HomePage() {
                     />
                   </svg>
                 </div>
-                <h2 className="text-lg font-semibold text-gray-900">Outputs</h2>
+                <h2 className="text-lg font-semibold text-gray-900">Projects</h2>
               </div>
               <p className="text-sm text-gray-600">
                 Research outputs and artifacts from digitalization and automation in food science.
               </p>
             </Card>
-
-            <Card href="/blog">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-accent-100 rounded-lg">
-                  <svg
-                    className="w-5 h-5 text-accent-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                    />
-                  </svg>
-                </div>
-                <h2 className="text-lg font-semibold text-gray-900">Blog</h2>
-              </div>
-              <p className="text-sm text-gray-600">
-                Thoughts, tutorials, and insights on AI, technology, academia, and the future of
-                food science.
-              </p>
-            </Card>
           </div>
         </Container>
       </section>
 
-      {/* Latest Posts */}
+      {/* Selected Projects */}
       <section className="py-12 border-t border-gray-200">
         <Container>
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold text-gray-900">Latest Posts</h2>
-            <Link
-              href="/blog"
-              className="text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors"
-            >
-              View all &rarr;
-            </Link>
-          </div>
-
-          {latestPosts.length > 0 ? (
-            <div className="space-y-4">
-              {latestPosts.map((post) => (
-                <Card key={post.slug} href={`/blog/${post.slug}`}>
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                    <div>
-                      <h3 className="font-medium text-gray-900 mb-1">{post.frontmatter.title}</h3>
-                      <p className="text-sm text-gray-600 line-clamp-2">
-                        {post.frontmatter.summary}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2 sm:flex-shrink-0">
-                      <span className="text-xs text-gray-500">
-                        {new Date(post.frontmatter.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric',
-                        })}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 mt-3">
-                    {post.frontmatter.tags.slice(0, 3).map((tag) => (
-                      <TagPill key={tag}>{tag}</TagPill>
-                    ))}
-                  </div>
-                </Card>
-              ))}
-            </div>
-          ) : (
-            <p className="text-gray-600">No posts yet. Check back soon!</p>
-          )}
-        </Container>
-      </section>
-
-      {/* Selected Outputs */}
-      <section className="py-12 border-t border-gray-200">
-        <Container>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold text-gray-900">Selected Outputs</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">Selected Projects</h2>
             <Link
               href="/outputs"
               className="text-sm font-medium text-accent-600 hover:text-accent-700 transition-colors"

@@ -67,7 +67,7 @@ export default function OutputsPage() {
       {/* Header */}
       <section className="py-12 bg-accent-50/50">
         <Container>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Outputs</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Projects</h1>
           <p className="text-lg text-gray-600 max-w-2xl">
             A collection of publications, software, and related artifacts from my work in food
             science digitalization and automation.
@@ -91,7 +91,7 @@ export default function OutputsPage() {
           {hasActiveFilters && (
             <div className="mt-4 flex items-center gap-2">
               <span className="text-sm text-gray-500">
-                Showing {filteredOutputs.length} of {outputs.length} outputs
+                Showing {filteredOutputs.length} of {outputs.length} projects
               </span>
               <button
                 onClick={clearFilters}
@@ -104,7 +104,7 @@ export default function OutputsPage() {
         </Container>
       </section>
 
-      {/* Outputs List */}
+      {/* Projects List */}
       <section className="py-12">
         <Container>
           {filteredOutputs.length > 0 ? (

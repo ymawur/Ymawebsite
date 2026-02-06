@@ -1,0 +1,103 @@
+---
+title: 'Getting Started with Transformers: A Practical Guide'
+date: '2024-06-15'
+summary: 'An introduction to transformer architectures and how to implement them from scratch using PyTorch. Learn the fundamentals of attention mechanisms.'
+tags: ['NLP', 'Transformers', 'PyTorch', 'Tutorial']
+draft: false
+---
+
+Transformers have revolutionized natural language processing since their introduction in the seminal paper "Attention Is All You Need." In this post, we will explore the fundamental concepts behind transformer architectures and implement a basic version from scratch.
+
+## What Are Transformers?
+
+Transformers are a type of neural network architecture that relies entirely on attention mechanisms, dispensing with recurrence and convolutions entirely. This design allows for much more parallelization and has led to state-of-the-art results in many NLP tasks.
+
+<Callout type="info">
+  The original Transformer architecture consists of an encoder and decoder, each composed of a stack
+  of identical layers. Modern variants like BERT use only the encoder, while GPT models use only
+  the decoder.
+</Callout>
+
+## The Attention Mechanism
+
+At the heart of transformers lies the attention mechanism. The key idea is to allow the model to focus on different parts of the input sequence when producing each element of the output sequence.
+
+### Self-Attention
+
+Self-attention allows each position in the sequence to attend to all positions in the previous layer. This is computed using three matrices: Query (Q), Key (K), and Value (V).
+
+<CodeBlock>
+{`import torch
+import torch.nn as nn
+import math
+
+class SelfAttention(nn.Module):
+    def __init__(self, embed_size, heads):
+        super().__init__()
+        self.embed_size = embed_size
+        self.heads = heads
+        self.head_dim = embed_size // heads
+
+        self.values = nn.Linear(embed_size, embed_size)
+        self.keys = nn.Linear(embed_size, embed_size)
+        self.queries = nn.Linear(embed_size, embed_size)
+        self.fc_out = nn.Linear(embed_size, embed_size)
+
+    def forward(self, values, keys, query, mask):
+        N = query.shape[0]
+        value_len, key_len, query_len = values.shape[1], keys.shape[1], query.shape[1]
+
+        values = self.values(values).view(N, value_len, self.heads, self.head_dim)
+        keys = self.keys(keys).view(N, key_len, self.heads, self.head_dim)
+        queries = self.queries(query).view(N, query_len, self.heads, self.head_dim)
+
+        energy = torch.einsum("nqhd,nkhd->nhqk", [queries, keys])
+
+        if mask is not None:
+            energy = energy.masked_fill(mask == 0, float("-1e20"))
+
+        attention = torch.softmax(energy / (self.embed_size ** (1 / 2)), dim=3)
+        out = torch.einsum("nhql,nlhd->nqhd", [attention, values]).reshape(
+            N, query_len, self.embed_size
+        )
+
+        return self.fc_out(out)`}
+</CodeBlock>
+
+## Multi-Head Attention
+
+Instead of performing a single attention function, multi-head attention projects the queries, keys, and values multiple times with different learned projections. This allows the model to jointly attend to information from different representation subspaces.
+
+<Callout type="success">
+  Multi-head attention has been shown to significantly improve model performance compared to
+  single-head attention, as different heads can learn to focus on different types of relationships
+  in the data.
+</Callout>
+
+## Position Encoding
+
+Since transformers do not have recurrence or convolution, we need to inject information about the position of tokens in the sequence. The original paper uses sinusoidal position encodings:
+
+<CodeBlock>
+{`class PositionalEncoding(nn.Module):
+    def __init__(self, embed_size, max_len=5000):
+        super().__init__()
+        pe = torch.zeros(max_len, embed_size)
+        position = torch.arange(0, max_len).unsqueeze(1).float()
+        div_term = torch.exp(
+            torch.arange(0, embed_size, 2).float() *
+            -(math.log(10000.0) / embed_size)
+        )
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        self.register_buffer('pe', pe.unsqueeze(0))
+
+    def forward(self, x):
+        return x + self.pe[:, :x.size(1)]`}
+</CodeBlock>
+
+## Conclusion
+
+Transformers have fundamentally changed how we approach sequence modeling tasks. Understanding their inner workings is essential for anyone working in modern NLP and deep learning.
+
+In future posts, we will explore how to fine-tune pre-trained transformer models and apply them to specific downstream tasks.

@@ -1,7 +1,5 @@
 import { Container } from '@/components/Container'
 import { Card } from '@/components/Card'
-import { TagPill } from '@/components/TagPill'
-import { Button } from '@/components/Button'
 import { outputs } from '@/data/outputs'
 
 export default function OutputsPage() {
@@ -23,37 +21,14 @@ export default function OutputsPage() {
         <Container>
           <div className="grid md:grid-cols-2 gap-6">
             {outputs.map((output) => (
-              <Card key={output.id} className="h-full flex flex-col">
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <TagPill>{output.category}</TagPill>
-                  <span className="text-sm text-gray-500">{output.year}</span>
-                  {output.selected && (
-                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-100 text-accent-800">
-                      Selected
-                    </span>
-                  )}
-                </div>
-
+              <Card key={output.id} href={`/outputs/${output.id}`} className="h-full">
+                {output.selected && (
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-100 text-accent-800 mb-3">
+                    Selected
+                  </span>
+                )}
                 <h2 className="text-xl font-semibold text-gray-900 mb-2">{output.title}</h2>
-
-                <p className="text-sm text-gray-600 mb-4">
-                  {output.authors.join(', ')}
-                  {output.venue && <span className="text-gray-500"> &bull; {output.venue}</span>}
-                </p>
-
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {output.tags.map((tag) => (
-                    <TagPill key={tag}>{tag}</TagPill>
-                  ))}
-                </div>
-
-                <div className="mt-auto flex flex-wrap gap-2">
-                  {output.links.map((link) => (
-                    <Button key={link.label} href={link.href} variant="secondary" size="sm">
-                      {link.label}
-                    </Button>
-                  ))}
-                </div>
+                <p className="text-sm text-gray-600">{output.headline}</p>
               </Card>
             ))}
           </div>

@@ -1,6 +1,19 @@
+import type { Metadata } from 'next'
 import { Container } from '@/components/Container'
 import { Card } from '@/components/Card'
 import { outputs } from '@/data/outputs'
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description:
+    'Explore projects by Yizhou Ma on AI for food science, Fiberlyzer, physics-informed neural networks, and automated food processing.',
+  openGraph: {
+    title: 'Projects | Yizhou Ma',
+    description:
+      'Explore projects by Yizhou Ma on AI for food science, Fiberlyzer, physics-informed neural networks, and automated food processing.',
+    type: 'website',
+  },
+}
 
 export default function OutputsPage() {
   return (

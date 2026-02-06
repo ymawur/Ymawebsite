@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { Container } from '@/components/Container'
@@ -14,6 +15,27 @@ export const dynamicParams = false
 
 export function generateStaticParams() {
   return outputs.map((output) => ({ id: output.id }))
+}
+
+export function generateMetadata({ params }: OutputDetailPageProps): Metadata {
+  const output = outputs.find((item) => item.id === params.id)
+
+  if (!output) {
+    return {
+      title: 'Project not found',
+    }
+  }
+
+  return {
+    title: output.title,
+    description: output.headline,
+    openGraph: {
+      title: `${output.title} | Yizhou Ma`,
+      description: output.headline,
+      type: 'article',
+      images: [{ url: output.image.src, alt: output.image.alt }],
+    },
+  }
 }
 
 export default function OutputDetailPage({ params }: OutputDetailPageProps) {

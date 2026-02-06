@@ -2,14 +2,14 @@ import { getAllBlogPosts } from '@/lib/blog'
 
 export async function GET() {
   const posts = getAllBlogPosts()
-  const siteUrl = 'https://janeresearcher.com'
+  const siteUrl = 'https://yizhouma.com'
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jane Researcher | Blog</title>
+    <title>Yizhou Ma PhD | Blog</title>
     <link>${siteUrl}</link>
-    <description>Thoughts, tutorials, and insights on AI research and technology.</description>
+    <description>Thoughts, tutorials, and insights on AI, technology, academia, and the future of food science.</description>
     <language>en</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml"/>

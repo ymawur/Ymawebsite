@@ -17,16 +17,17 @@ export default function HomePage() {
       <section className="py-16 md:py-24 bg-gradient-to-b from-accent-50/50 to-white">
         <Container>
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Jane Researcher
-            </h1>
-            <p className="text-xl text-gray-600 mb-6">
-              Machine Learning Researcher & Software Engineer
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Yizhou Ma PhD</h1>
+            <p className="text-xl text-gray-600 mb-6">Assistant professor at Wageningen University</p>
+            <p className="text-gray-700 leading-relaxed mb-8">
+              Digitalization & Automation in Food Science at WUR. My professional and personal
+              pursuits are built upon global responsibility, data-driven research, and sustainable
+              system design. In my research, I work on lab automation of solid food testing, agentic
+              food formulation, and structural representation of food materials.
             </p>
             <p className="text-gray-700 leading-relaxed mb-8">
-              I explore the intersection of machine learning, natural language processing, and
-              responsible AI. My work focuses on building systems that are not only powerful but
-              also fair, transparent, and beneficial to society.
+              Research: Lab automation, agents for food design, structural representation of food
+              materials
             </p>
             <div className="flex flex-wrap gap-3">
               <Button href="/outputs">View outputs</Button>
@@ -62,7 +63,8 @@ export default function HomePage() {
                 <h2 className="text-lg font-semibold text-gray-900">Research</h2>
               </div>
               <p className="text-sm text-gray-600">
-                Explore my research interests in ML, NLP, computer vision, and responsible AI.
+                Lab automation for food testing, agentic food formulation, and structural
+                representation of food materials.
               </p>
             </Card>
 
@@ -86,7 +88,7 @@ export default function HomePage() {
                 <h2 className="text-lg font-semibold text-gray-900">Outputs</h2>
               </div>
               <p className="text-sm text-gray-600">
-                Publications, talks, software, and datasets from my research journey.
+                Research outputs and artifacts from digitalization and automation in food science.
               </p>
             </Card>
 
@@ -110,7 +112,8 @@ export default function HomePage() {
                 <h2 className="text-lg font-semibold text-gray-900">Blog</h2>
               </div>
               <p className="text-sm text-gray-600">
-                Thoughts, tutorials, and insights on AI research and technology.
+                Thoughts, tutorials, and insights on AI, technology, academia, and the future of
+                food science.
               </p>
             </Card>
           </div>

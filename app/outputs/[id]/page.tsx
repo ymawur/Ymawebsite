@@ -1,29 +1,29 @@
-import type { Metadata } from 'next'
-import Image from 'next/image'
-import { notFound } from 'next/navigation'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
-import { outputs } from '@/data/outputs'
+import type { Metadata } from "next";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { Container } from "@/components/Container";
+import { Button } from "@/components/Button";
+import { outputs } from "@/data/outputs";
 
 type OutputDetailPageProps = {
   params: {
-    id: string
-  }
-}
+    id: string;
+  };
+};
 
-export const dynamicParams = false
+export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return outputs.map((output) => ({ id: output.id }))
+  return outputs.map((output) => ({ id: output.id }));
 }
 
 export function generateMetadata({ params }: OutputDetailPageProps): Metadata {
-  const output = outputs.find((item) => item.id === params.id)
+  const output = outputs.find((item) => item.id === params.id);
 
   if (!output) {
     return {
-      title: 'Project not found',
-    }
+      title: "Project not found",
+    };
   }
 
   return {
@@ -32,31 +32,38 @@ export function generateMetadata({ params }: OutputDetailPageProps): Metadata {
     openGraph: {
       title: `${output.title} | Yizhou Ma`,
       description: output.headline,
-      type: 'article',
+      type: "article",
       images: [{ url: output.image.src, alt: output.image.alt }],
     },
-  }
+  };
 }
 
 export default function OutputDetailPage({ params }: OutputDetailPageProps) {
-  const output = outputs.find((item) => item.id === params.id)
+  const output = outputs.find((item) => item.id === params.id);
 
   if (!output) {
-    notFound()
+    notFound();
   }
 
   return (
     <section className="py-12">
       <Container>
         <div className="max-w-3xl">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{output.title}</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            {output.title}
+          </h1>
           <p className="text-lg text-gray-600 mb-6">{output.headline}</p>
         </div>
 
         <div className="grid lg:grid-cols-[2fr_1fr] gap-10 items-start">
           <div>
             <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-accent-50 border border-accent-100">
-              <Image src={output.image.src} alt={output.image.alt} fill className="object-cover" />
+              <Image
+                src={output.image.src}
+                alt={output.image.alt}
+                fill
+                className={`object-cover ${output.id === "food-in-the-hood-podcast" ? "object-top" : ""}`}
+              />
             </div>
             <div className="mt-6 space-y-4 text-gray-700 leading-relaxed whitespace-pre-line">
               {output.description}
@@ -76,5 +83,5 @@ export default function OutputDetailPage({ params }: OutputDetailPageProps) {
         </div>
       </Container>
     </section>
-  )
+  );
 }

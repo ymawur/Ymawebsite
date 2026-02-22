@@ -201,8 +201,11 @@ export const metadata: Metadata = {
 1. Push your code to GitHub
 2. Import the repository on [Vercel](https://vercel.com)
 3. Deploy with default settings
+4. Set `NEXT_PUBLIC_SITE_URL` in project environment variables (for example, `https://yizhouma.me`)
 
 The site will automatically rebuild on each push to the main branch.
+
+> **HTTPS note:** If your custom domain shows "This site doesn't support a secure connection", verify the domain is correctly attached in your hosting provider (for example Vercel) and that DNS records point to the host so TLS certificates can be provisioned.
 
 ### Other Static Hosts
 

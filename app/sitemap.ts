@@ -1,8 +1,9 @@
 import { getAllBlogPosts } from '@/lib/blog'
 import { MetadataRoute } from 'next'
+import { getSiteUrl } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = 'https://yizhouma.com'
+  const siteUrl = getSiteUrl()
   const posts = getAllBlogPosts()
 
   const staticRoutes = [

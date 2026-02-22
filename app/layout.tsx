@@ -2,8 +2,12 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { getSiteUrl } from '@/lib/site'
+
+const siteUrl = getSiteUrl()
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'Yizhou Ma | Personal Website',
     template: '%s | Yizhou Ma',
@@ -19,6 +23,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Yizhou Ma' }],
   openGraph: {
+    url: siteUrl,
     type: 'website',
     locale: 'en_US',
     siteName: 'Yizhou Ma',

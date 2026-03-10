@@ -3,6 +3,8 @@ import './globals.css'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { getSiteUrl } from '@/lib/site'
+import { LanguageProvider } from '@/components/LanguageProvider'
+import { LangText } from '@/components/LangText'
 
 const siteUrl = getSiteUrl()
 
@@ -52,16 +54,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="zh-CN">
       <body className="min-h-screen flex flex-col">
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
-        <Header />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <LanguageProvider>
+          <a href="#main-content" className="skip-link">
+            <LangText en="Skip to main content" zh="跳转到主要内容" />
+          </a>
+          <Header />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   )

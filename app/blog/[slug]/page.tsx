@@ -7,6 +7,7 @@ import { TagPill } from '@/components/TagPill'
 import { getBlogPostBySlug, getAllBlogPosts, generateTOC, getAdjacentPosts } from '@/lib/blog'
 import { mdxComponents } from '@/lib/mdx-components'
 import { TOCItem } from '@/types'
+import { LangText } from '@/components/LangText'
 
 interface Props {
   params: { slug: string }
@@ -69,7 +70,7 @@ function TableOfContents({ items }: { items: TOCItem[] }) {
 
   return (
     <nav className="bg-gray-50 rounded-lg p-4 mb-8">
-      <h2 className="text-sm font-semibold text-gray-900 mb-3">Table of Contents</h2>
+      <h2 className="text-sm font-semibold text-gray-900 mb-3"><LangText en="Table of Contents" zh="目录" /></h2>
       <ul className="space-y-1.5">
         {items.map((item) => (
           <li
@@ -112,7 +113,7 @@ export default async function BlogPostPage({ params }: Props) {
               <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              Back to blog
+              <LangText en="Back to blog" zh="返回博客" />
             </Link>
           </div>
 
@@ -158,7 +159,7 @@ export default async function BlogPostPage({ params }: Props) {
                 href={`/blog/${prev.slug}`}
                 className="group flex flex-col items-start p-4 rounded-lg border border-gray-200 hover:border-accent-300 hover:bg-accent-50 transition-colors"
               >
-                <span className="text-sm text-gray-500 mb-1">Previous</span>
+                <span className="text-sm text-gray-500 mb-1"><LangText en="Previous" zh="上一篇" /></span>
                 <span className="font-medium text-gray-900 group-hover:text-accent-700 transition-colors">
                   {prev.frontmatter.title}
                 </span>
@@ -172,7 +173,7 @@ export default async function BlogPostPage({ params }: Props) {
                 href={`/blog/${next.slug}`}
                 className="group flex flex-col items-end p-4 rounded-lg border border-gray-200 hover:border-accent-300 hover:bg-accent-50 transition-colors text-right"
               >
-                <span className="text-sm text-gray-500 mb-1">Next</span>
+                <span className="text-sm text-gray-500 mb-1"><LangText en="Next" zh="下一篇" /></span>
                 <span className="font-medium text-gray-900 group-hover:text-accent-700 transition-colors">
                   {next.frontmatter.title}
                 </span>

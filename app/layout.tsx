@@ -54,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="zh-CN">
+    <html lang="en">
       <body className="min-h-screen flex flex-col">
         <LanguageProvider>
           <a href="#main-content" className="skip-link">

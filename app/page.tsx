@@ -8,6 +8,12 @@ import { outputs } from '@/data/outputs'
 import { useLanguage } from '@/components/LanguageProvider'
 import { outputsZh } from '@/lib/translations'
 
+const socialLinks = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ybenma/' },
+  { label: 'GitLab', href: 'https://git.wur.nl/yizhou.ma/' },
+  { label: 'Scholar', href: 'https://scholar.google.com/citations?user=LTcsUgcAAAAJ&hl=en' },
+]
+
 export default function HomePage() {
   const selectedOutputs = outputs.filter((o) => o.selected).slice(0, 3)
   const { language } = useLanguage()
@@ -22,6 +28,13 @@ export default function HomePage() {
               <p className="text-xl text-gray-600 mb-6">
                 {language === 'zh' ? '瓦赫宁根大学助理教授' : 'Assistant professor at Wageningen University'}
               </p>
+              <div className="hidden md:flex items-center gap-4 mb-6">
+                {socialLinks.map((link) => (
+                  <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-accent-700 hover:text-accent-800 transition-colors">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
               <p className="text-gray-700 leading-relaxed mb-8">
                 {language === 'zh'
                   ? '我在瓦赫宁根大学（WUR）从事食品科学数字化与自动化研究。我的职业与个人追求建立在全球责任、数据驱动研究与可持续系统设计之上。当前研究方向包括固体食品测试实验室自动化、智能体食品配方与食品材料结构表征。'
@@ -31,6 +44,13 @@ export default function HomePage() {
             <div className="flex-shrink-0 md:ml-auto">
               <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-lg bg-accent-50">
                 <Image src="/images/Headshot3.jpg" alt={language === 'zh' ? '马逸舟肖像' : 'Portrait of Yizhou Ma'} fill className="object-cover" priority />
+              </div>
+              <div className="md:hidden mt-4 flex flex-wrap items-center justify-center gap-4">
+                {socialLinks.map((link) => (
+                  <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-accent-700 hover:text-accent-800 transition-colors">
+                    {link.label}
+                  </a>
+                ))}
               </div>
             </div>
           </div>

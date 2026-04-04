@@ -13,11 +13,11 @@ interface LanguageContextValue {
 const LanguageContext = createContext<LanguageContextValue | null>(null)
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('zh')
+  const [language, setLanguage] = useState<Language>('en')
 
   useEffect(() => {
     const stored = window.localStorage.getItem('site-language') as Language | null
-    const next = stored === 'en' || stored === 'zh' ? stored : 'zh'
+    const next = stored === 'en' || stored === 'zh' ? stored : 'en'
     setLanguage(next)
     document.documentElement.lang = next === 'zh' ? 'zh-CN' : 'en'
   }, [])

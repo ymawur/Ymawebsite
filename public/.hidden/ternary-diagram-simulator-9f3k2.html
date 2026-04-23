@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ternary Diagram Simulator</title>
+  <style>
+    :root {
+      --protein: #149c35;
+      --starch: #1f4fff;
+      --fiber: #e11d2e;
+      --ink: #222;
+      --grid: #d9d9d9;
+      --bg: #f6f6f6;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: var(--ink);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    .wrap {
+      width: 980px;
+      max-width: 100%;
+    }
+
+    .panel {
+      border: 1px solid #d0d0d0;
+      background: var(--bg);
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .toolbar label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      background: #f2f2f2;
+      border: 1px solid #c8c8c8;
+    }
+
+    .tick {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .axis-label {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .legend-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .legend-value {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .label-box {
+      fill: #fff;
+      stroke: #222;
+      stroke-width: 1.2;
+      rx: 6;
+      ry: 6;
+    }
+
+    .guide {
+      stroke-width: 2.5;
+      fill: none;
+      pointer-events: none;
+    }
+
+    .guide.protein { stroke: var(--protein); }
+    .guide.starch { stroke: var(--starch); }
+    .guide.fiber { stroke: var(--fiber); }
+
+    .grid-line {
+      stroke: var(--grid);
+      stroke-width: 1;
+    }
+
+    .outer {
+      stroke: #222;
+      stroke-width: 2.5;
+      fill: white;
+    }
+
+    .point {
+      fill: #222;
+      stroke: #111;
+      stroke-width: 1.5;
+    }
+
+    .hint {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <div class="toolbar">
+        <label><input type="checkbox" id="gridToggle" checked /> show grid lines</label>
+      </div>
+
+      <svg id="ternary" viewBox="0 0 900 700" aria-label="Interactive ternary composition diagram">
+        <defs>
+          <marker id="arrowProtein" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+            <path d="M 0 0 L 8 4 L 0 8 z" fill="#149c35"></path>
+          </marker>
+          <marker id="arrowStarch" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+            <path d="M 0 0 L 8 4 L 0 8 z" fill="#1f4fff"></path>
+          </marker>
+          <marker id="arrowFiber" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+            <path d="M 0 0 L 8 4 L 0 8 z" fill="#e11d2e"></path>
+          </marker>
+        </defs>
+
+        <g id="grid"></g>
+        <polygon id="triangle" class="outer" points="450,80 150,600 750,600"></polygon>
+
+        <g id="ticks"></g>
+
+        <text x="450" y="62" text-anchor="middle" class="axis-label" fill="var(--protein)">Protein</text>
+        <text x="118" y="610" text-anchor="middle" class="axis-label" fill="var(--starch)">Starch</text>
+        <text x="772" y="610" text-anchor="middle" class="axis-label" fill="var(--fiber)">Fiber</text>
+
+        <g id="legend">
+          <rect x="95" y="85" width="185" height="118" class="label-box"></rect>
+          <text x="188" y="117" text-anchor="middle" class="legend-title">mass fractions</text>
+          <text id="legendProtein" x="128" y="148" class="legend-value" fill="var(--protein)">xₚ = 0.33</text>
+          <text id="legendStarch" x="128" y="176" class="legend-value" fill="var(--starch)">xₛ = 0.33</text>
+          <text id="legendFiber" x="128" y="204" class="legend-value" fill="var(--fiber)">x𝒻 = 0.34</text>
+        </g>
+
+        <g id="guides" visibility="hidden">
+          <path id="guideProtein" class="guide protein" marker-end="url(#arrowProtein)"></path>
+          <path id="guideStarch" class="guide starch" marker-end="url(#arrowStarch)"></path>
+          <path id="guideFiber" class="guide fiber" marker-end="url(#arrowFiber)"></path>
+
+          <circle id="hoverPoint" r="8" class="point"></circle>
+
+          <g id="boxProtein">
+            <rect id="proteinRect" width="58" height="42" class="label-box"></rect>
+            <text id="proteinText" class="legend-value" text-anchor="middle" dominant-baseline="middle" fill="var(--protein)">0.33</text>
+          </g>
+          <g id="boxStarch">
+            <rect id="starchRect" width="58" height="42" class="label-box"></rect>
+            <text id="starchText" class="legend-value" text-anchor="middle" dominant-baseline="middle" fill="var(--starch)">0.33</text>
+          </g>
+          <g id="boxFiber">
+            <rect id="fiberRect" width="58" height="42" class="label-box"></rect>
+            <text id="fiberText" class="legend-value" text-anchor="middle" dominant-baseline="middle" fill="var(--fiber)">0.34</text>
+          </g>
+        </g>
+      </svg>
+
+      <div class="hint">Move the mouse inside the triangle to read the Protein, Starch, and Fiber composition at that point.</div>
+    </div>
+  </div>
+
+  <script>
+    const svg = document.getElementById('ternary');
+    const grid = document.getElementById('grid');
+    const ticks = document.getElementById('ticks');
+    const guides = document.getElementById('guides');
+    const triangle = document.getElementById('triangle');
+    const gridToggle = document.getElementById('gridToggle');
+
+    const A = { x: 450, y: 80 };   // Protein
+    const B = { x: 150, y: 600 };  // Starch
+    const C = { x: 750, y: 600 };  // Fiber
+
+    function interp(P, Q, t) {
+      return { x: P.x + (Q.x - P.x) * t, y: P.y + (Q.y - P.y) * t };
+    }
+
+    function makeLine(p1, p2, cls, parent = grid) {
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', p1.x);
+      line.setAttribute('y1', p1.y);
+      line.setAttribute('x2', p2.x);
+      line.setAttribute('y2', p2.y);
+      line.setAttribute('class', cls);
+      parent.appendChild(line);
+      return line;
+    }
+
+    function makeText(x, y, text, fill, rotate = null, anchor = 'middle') {
+      const el = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      el.setAttribute('x', x);
+      el.setAttribute('y', y);
+      el.setAttribute('fill', fill);
+      el.setAttribute('class', 'tick');
+      el.setAttribute('text-anchor', anchor);
+      if (rotate !== null) {
+        el.setAttribute('transform', `rotate(${rotate} ${x} ${y})`);
+      }
+      el.textContent = text;
+      ticks.appendChild(el);
+      return el;
+    }
+
+    function drawGridAndTicks() {
+      grid.innerHTML = '';
+      ticks.innerHTML = '';
+
+      for (let i = 1; i <= 9; i++) {
+        const t = i / 10;
+
+        // Protein = t, parallel to BC
+        makeLine(interp(A, B, t), interp(A, C, t), 'grid-line');
+
+        // Starch = t, parallel to AC
+        makeLine(interp(B, A, t), interp(B, C, t), 'grid-line');
+
+        // Fiber = t, parallel to AB
+        makeLine(interp(C, A, t), interp(C, B, t), 'grid-line');
+      }
+
+      for (let i = 1; i <= 9; i++) {
+        const t = i / 10;
+        const val = t.toFixed(1);
+
+        // Protein labels on AC
+        const p = interp(C, A, t);
+        makeText(p.x + 28, p.y + 6, val, '#149c35', null, 'start');
+
+        // Starch labels on AB
+        const s = interp(A, B, t);
+        makeText(s.x - 18, s.y + 10, val, '#1f4fff', -60);
+
+        // Fiber labels on BC
+        const f = interp(B, C, t);
+        makeText(f.x, f.y + 38, val, '#e11d2e', -60);
+      }
+    }
+
+    function barycentricFromPoint(P) {
+      const denom = ((B.y - C.y) * (A.x - C.x) + (C.x - B.x) * (A.y - C.y));
+      const wA = ((B.y - C.y) * (P.x - C.x) + (C.x - B.x) * (P.y - C.y)) / denom;
+      const wB = ((C.y - A.y) * (P.x - C.x) + (A.x - C.x) * (P.y - C.y)) / denom;
+      const wC = 1 - wA - wB;
+      return { protein: wA, starch: wB, fiber: wC };
+    }
+
+    function pointFromBarycentric(protein, starch, fiber) {
+      return {
+        x: protein * A.x + starch * B.x + fiber * C.x,
+        y: protein * A.y + starch * B.y + fiber * C.y,
+      };
+    }
+
+    function clampToTriangle(P) {
+      let { protein, starch, fiber } = barycentricFromPoint(P);
+      protein = Math.max(0, protein);
+      starch = Math.max(0, starch);
+      fiber = Math.max(0, fiber);
+      const sum = protein + starch + fiber || 1;
+      return pointFromBarycentric(protein / sum, starch / sum, fiber / sum);
+    }
+
+    function insideTriangle(P) {
+      const { protein, starch, fiber } = barycentricFromPoint(P);
+      const eps = -1e-6;
+      return protein >= eps && starch >= eps && fiber >= eps;
+    }
+
+    function svgPointFromEvent(evt) {
+      const pt = svg.createSVGPoint();
+      pt.x = evt.clientX;
+      pt.y = evt.clientY;
+      const out = pt.matrixTransform(svg.getScreenCTM().inverse());
+      return { x: out.x, y: out.y };
+    }
+
+    function setBox(groupId, rectId, textId, x, y, valueText) {
+      const rect = document.getElementById(rectId);
+      const text = document.getElementById(textId);
+      const g = document.getElementById(groupId);
+      rect.setAttribute('x', x - 29);
+      rect.setAttribute('y', y - 21);
+      text.setAttribute('x', x);
+      text.setAttribute('y', y + 1);
+      text.textContent = valueText;
+      g.setAttribute('transform', '');
+    }
+
+    function fmt(x) {
+      return (Math.round(x * 100) / 100).toFixed(2);
+    }
+
+    function updateFromPoint(P) {
+      const comp = barycentricFromPoint(P);
+      const protein = Math.max(0, comp.protein);
+      const starch = Math.max(0, comp.starch);
+      const fiber = Math.max(0, comp.fiber);
+      const sum = protein + starch + fiber;
+      const p = protein / sum;
+      const s = starch / sum;
+      const f = fiber / sum;
+
+      document.getElementById('legendProtein').textContent = `xₚ = ${fmt(p)}`;
+      document.getElementById('legendStarch').textContent = `xₛ = ${fmt(s)}`;
+      document.getElementById('legendFiber').textContent = `x𝒻 = ${fmt(f)}`;
+
+      document.getElementById('hoverPoint').setAttribute('cx', P.x);
+      document.getElementById('hoverPoint').setAttribute('cy', P.y);
+
+      // Protein guide: horizontal line to AC intersection
+      const pEnd = interp(C, A, p);
+      document.getElementById('guideProtein').setAttribute('d', `M ${P.x} ${P.y} L ${pEnd.x} ${pEnd.y}`);
+      setBox('boxProtein', 'proteinRect', 'proteinText', pEnd.x + 36, pEnd.y + 2, fmt(p));
+
+      // Starch guide: parallel to AC, ending on AB
+      const sEnd = interp(A, B, s);
+      document.getElementById('guideStarch').setAttribute('d', `M ${P.x} ${P.y} L ${sEnd.x} ${sEnd.y}`);
+      setBox('boxStarch', 'starchRect', 'starchText', sEnd.x - 40, sEnd.y - 22, fmt(s));
+
+      // Fiber guide: parallel to AB, ending on BC
+      const fEnd = interp(B, C, f);
+      document.getElementById('guideFiber').setAttribute('d', `M ${P.x} ${P.y} L ${fEnd.x} ${fEnd.y}`);
+      setBox('boxFiber', 'fiberRect', 'fiberText', fEnd.x, fEnd.y + 36, fmt(f));
+    }
+
+    svg.addEventListener('mousemove', (evt) => {
+      const raw = svgPointFromEvent(evt);
+      if (insideTriangle(raw)) {
+        guides.setAttribute('visibility', 'visible');
+        updateFromPoint(raw);
+      } else {
+        guides.setAttribute('visibility', 'hidden');
+      }
+    });
+
+    svg.addEventListener('mouseleave', () => {
+      guides.setAttribute('visibility', 'hidden');
+    });
+
+    gridToggle.addEventListener('change', () => {
+      grid.style.display = gridToggle.checked ? 'block' : 'none';
+    });
+
+    drawGridAndTicks();
+    grid.style.display = 'block';
+
+    // Initial point near center for first render on load.
+    const initial = pointFromBarycentric(0.35, 0.28, 0.37);
+    guides.setAttribute('visibility', 'visible');
+    updateFromPoint(initial);
+  </script>
+</body>
+</html>

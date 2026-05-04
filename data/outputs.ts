@@ -58,10 +58,10 @@ export const outputs: Output[] = [
     const bonds=[],nodes=[]; for(let i=0;i<sequence.length-1;i++){const line=document.createElementNS(NS,'line'); line.setAttribute('class','bond'); scene.querySelector('#bonds').appendChild(line); bonds.push(line);}
     for(let i=0;i<sequence.length;i++){const c=document.createElementNS(NS,'circle'); c.setAttribute('r','6.5'); c.setAttribute('class', cleavageEvents.some(e=>e.pos===i+1)?'aa cleavage':'aa'); scene.querySelector('#nodes').appendChild(c); nodes.push(c);}
     function fragments(){const cuts=cleavageEvents.map(e=>e.pos).sort((a,b)=>a-b); let s=1; return cuts.map(c=>{const f={start:s,end:c,seq:sequence.slice(s-1,c)}; s=c+1; return f;}).concat([{start:s,end:sequence.length,seq:sequence.slice(s-1)}]);}
-    modelList.innerHTML=fragments().map((f,i)=>`<div class="frag-card"><strong>F${i+1}: ${f.start}-${f.end}</strong><span class="seq">${f.seq}</span></div>`).join('');
+    modelList.innerHTML=fragments().map((f,i)=>'<div class="frag-card"><strong>F'+(i+1)+': '+f.start+'-'+f.end+'</strong><span class="seq">'+f.seq+'</span></div>').join('');
     function update(v){const cleaved=cleavageEvents.filter(e=>v>=e.t); for(let i=0;i<bonds.length;i++){const p1=points[i],p2=points[i+1]; bonds[i].setAttribute('x1',p1.x); bonds[i].setAttribute('y1',p1.y); bonds[i].setAttribute('x2',p2.x); bonds[i].setAttribute('y2',p2.y); bonds[i].classList.toggle('broken',cleaved.some(e=>e.pos===i+1));}
       nodes.forEach((n,i)=>{n.setAttribute('cx',points[i].x); n.setAttribute('cy',points[i].y);});
-      progressText.textContent=v+'%'; cleavedText.textContent=`${cleaved.length} / ${cleavageEvents.length}`; fragmentText.textContent=String(cleaved.length+1); dhText.textContent=(cleaved.length/161*100).toFixed(1)+'%'; timeReadout.textContent='t = '+Math.round(v/100*240)+' min';
+      progressText.textContent=v+'%'; cleavedText.textContent=cleaved.length+' / '+cleavageEvents.length; fragmentText.textContent=String(cleaved.length+1); dhText.textContent=(cleaved.length/161*100).toFixed(1)+'%'; timeReadout.textContent='t = '+Math.round(v/100*240)+' min';
       slider.style.setProperty('--slider-progress',v+'%');
     } slider.addEventListener('input',()=>update(Number(slider.value))); update(0);
   </script></body></html>`,

@@ -42,7 +42,7 @@ export default function OutputDetailPage() {
               {output.outlook && <p>{output.outlook}</p>}
             </div>
           </div>
-          <aside className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm"><h2 className="text-lg font-semibold text-gray-900 mb-4">{language==='zh'?'链接':'Links'}</h2><div className="flex flex-col gap-3">{output.links.map((link) => <Button key={link.label} href={link.href} variant="secondary">{language==='zh'&&zh?.links?.[link.label]?zh.links[link.label]:link.label}</Button>)}</div></aside>
+          {output.id !== 'predicting-food-protein-hydrolysis-kinetics' && (<aside className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm"><h2 className="text-lg font-semibold text-gray-900 mb-4">{language==='zh'?'链接':'Links'}</h2><div className="flex flex-col gap-3">{output.links.map((link) => <Button key={link.label} href={link.href} variant="secondary">{language==='zh'&&zh?.links?.[link.label]?zh.links[link.label]:link.label}</Button>)}</div></aside>)}
         </div>
       </Container>
     </section>

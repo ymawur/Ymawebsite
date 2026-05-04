@@ -18,53 +18,30 @@ export const outputs: Output[] = [
     },
     links: [],
     selected: true,
-    demoHtml: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body{margin:0;font-family:Inter,system-ui,sans-serif;background:#f8fbff;color:#1f2937}
-    .wrap{padding:18px;height:100vh;display:flex;flex-direction:column;gap:14px}
-    h3{margin:0;font-size:20px}
-    p{margin:0;color:#4b5563;font-size:13px}
-    .stage{flex:1;min-height:420px;border:1px solid #dbe7f3;border-radius:14px;background:white;position:relative;overflow:hidden}
-    svg{width:100%;height:100%;display:block}
-    .bond{stroke:#94a3b8;stroke-width:2.6;stroke-linecap:round}
-    .bond.broken{opacity:0.08}
-    .node{fill:#2563eb;stroke:white;stroke-width:1.2}
-    .node.cut{fill:#ef4444}
-    .controls{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
-    input[type=range]{width:100%}
-    .readout{font-weight:700;font-size:14px}
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <h3>β-Lactoglobulin tryptic hydrolysis (demo)</h3>
-    <p>Move the slider to simulate progressive cleavage and chain fragmentation.</p>
-    <div class="stage"><svg id="scene" viewBox="0 0 1000 560"><g id="b"></g><g id="n"></g></svg></div>
-    <div class="controls"><input id="s" type="range" min="0" max="100" value="0"/><div id="r" class="readout">t = 0 min</div></div>
-  </div>
-<script>
+    demoHtml: `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><style>
+body{margin:0;background:#f4f8ff;font-family:Inter,system-ui,sans-serif;color:#0f172a}.wrap{height:100vh;display:flex;flex-direction:column;padding:14px;gap:10px}.top{display:flex;justify-content:space-between;align-items:center}.top h3{margin:0;font-size:20px}.top p{margin:0;font-size:13px;color:#475569}.stage{flex:1;min-height:430px;background:#fff;border:1px solid #d9e3f2;border-radius:14px;position:relative;overflow:hidden}svg{width:100%;height:100%}.bond{stroke:#94a3b8;stroke-width:2.8;stroke-linecap:round}.bond.target{stroke:#ef4444;stroke-width:4.5}.bond.broken{opacity:.08}.aa{fill:#2563eb;stroke:#fff;stroke-width:1.1}.aa.cut{fill:#ef4444}.water{opacity:0}.water circle{fill:#38bdf8}.water text{font-size:10px;fill:#0c4a6e;font-weight:700}.enzyme{opacity:0}.enzyme ellipse{fill:rgba(245,158,11,.2);stroke:#f59e0b;stroke-width:2}.enzyme text{font-size:11px;fill:#92400e;font-weight:700}.frag{font-size:11px;fill:#065f46;font-weight:700;paint-order:stroke;stroke:#fff;stroke-width:3}.ctrl{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}input[type=range]{width:100%}.r{font-weight:700}
+</style></head><body><div class="wrap"><div class="top"><h3>β-Lactoglobulin hydrolysis by trypsin</h3><p id="m">0 / 15 cuts</p></div><div class="stage"><svg id="s" viewBox="0 0 1080 620"><g id="b"></g><g id="w"></g><g id="e"></g><g id="n"></g><g id="t"></g></svg></div><div class="ctrl"><input id="slider" type="range" min="0" max="100" value="0"/><div id="r" class="r">t = 0 min</div></div></div><script>
 const seq='LIVTQTMKGLDIQKVAGTWYSLAMAASDISLLDAQSAPLRVYVEELKPTPEGDLEILLQKWENGECAQKKIIAEKTKIPAVFKIDALNENKVLVLDTDYKKYLLFCMENSAEPEQSLACQCLVRTPEVDDEALEKFDKALKALPMHIRLSFNPTQLEEQCHI';
-const cuts=[8,14,40,69,70,75,77,83,91,101,124,135,138,141,148];
-const cutStep=[18,50,38,22,56,26,74,79,84,89,63,94,68,44,30];
-const NS='http://www.w3.org/2000/svg';
-const b=document.getElementById('b'),n=document.getElementById('n'),s=document.getElementById('s'),r=document.getElementById('r');
-const points=[...seq].map((_,i)=>{const t=i*0.33;const rad=210-i*0.55+18*Math.sin(i*0.2);return{x:500+Math.cos(t)*rad,y:275+Math.sin(t)*rad*0.72};});
-const bonds=[],nodes=[];
-for(let i=0;i<seq.length-1;i++){const line=document.createElementNS(NS,'line');line.setAttribute('class','bond');b.appendChild(line);bonds.push(line)}
-for(let i=0;i<seq.length;i++){const c=document.createElementNS(NS,'circle');c.setAttribute('r','6.2');c.setAttribute('class',cuts.includes(i+1)?'node cut':'node');n.appendChild(c);nodes.push(c)}
-function fragIndex(res,p){let f=0;for(let i=0;i<cuts.length;i++){if(p>=cutStep[i]&&res>cuts[i])f++}return f}
-function point(i,p){const base=points[i];const f=fragIndex(i+1,p);const spread=Math.max(0,(p-32)/68);const ox=(f%6-2.5)*38*spread;const oy=(Math.floor(f/6)-1.2)*54*spread;return{x:base.x+ox,y:base.y+oy}}
-function update(v){for(let i=0;i<bonds.length;i++){const p1=point(i,v),p2=point(i+1,v);const line=bonds[i];line.setAttribute('x1',p1.x);line.setAttribute('y1',p1.y);line.setAttribute('x2',p2.x);line.setAttribute('y2',p2.y);const k=cuts.indexOf(i+1);line.classList.toggle('broken',k>-1&&v>=cutStep[k])}
-for(let i=0;i<nodes.length;i++){const p=point(i,v);nodes[i].setAttribute('cx',p.x);nodes[i].setAttribute('cy',p.y)}
-r.textContent='t = '+Math.round(v*2.4)+' min';}
-s.addEventListener('input',()=>update(Number(s.value)));update(0);
-</script>
-</body>
-</html>`,
+const events=[{p:8,t:18},{p:14,t:50},{p:40,t:38},{p:69,t:22},{p:70,t:56},{p:75,t:26},{p:77,t:74},{p:83,t:79},{p:91,t:84},{p:101,t:89},{p:124,t:63},{p:135,t:94},{p:138,t:68},{p:141,t:44},{p:148,t:30}];
+const NS='http://www.w3.org/2000/svg',svg=document.getElementById('s'),B=document.getElementById('b'),W=document.getElementById('w'),E=document.getElementById('e'),N=document.getElementById('n'),T=document.getElementById('t');
+const slider=document.getElementById('slider'),read=document.getElementById('r'),metric=document.getElementById('m');
+const pts=[...seq].map((_,i)=>{const a=i*0.35;const r=210-i*0.5+20*Math.sin(i*0.18);return{x:530+Math.cos(a)*r+12*Math.sin(i*1.3),y:305+Math.sin(a)*r*0.72};});
+const cutPos=events.map(v=>v.p).sort((a,b)=>a-b);const bonds=[],nodes=[],waters=[],enz=[],labels=[];
+for(let i=0;i<seq.length-1;i++){const l=document.createElementNS(NS,'line');l.setAttribute('class','bond');B.appendChild(l);bonds.push(l)}
+for(let i=0;i<seq.length;i++){const c=document.createElementNS(NS,'circle');c.setAttribute('r','6.7');c.setAttribute('class',cutPos.includes(i+1)?'aa cut':'aa');N.appendChild(c);nodes.push(c)}
+events.forEach(()=>{const wg=document.createElementNS(NS,'g');wg.setAttribute('class','water');const wc=document.createElementNS(NS,'circle');wc.setAttribute('r','8');const wt=document.createElementNS(NS,'text');wt.textContent='H2O';wt.setAttribute('y','-11');wg.appendChild(wc);wg.appendChild(wt);W.appendChild(wg);waters.push(wg);const eg=document.createElementNS(NS,'g');eg.setAttribute('class','enzyme');const el=document.createElementNS(NS,'ellipse');el.setAttribute('rx','34');el.setAttribute('ry','16');const et=document.createElementNS(NS,'text');et.textContent='trypsin';et.setAttribute('y','4');et.setAttribute('x','-18');eg.appendChild(el);eg.appendChild(et);E.appendChild(eg);enz.push(eg);});
+function fragIndex(res,v){let f=0;for(const ev of events){if(v>=ev.t&&res>ev.p)f++;}return f}
+function pnt(i,v){const p=pts[i],f=fragIndex(i+1,v),sp=Math.max(0,(v-34)/66),ox=(f%6-2.5)*44*sp,oy=(Math.floor(f/6)-1)*56*sp;return{x:p.x+ox,y:p.y+oy}}
+function frags(){let s=1;const out=[];for(const c of cutPos){out.push({s:s,e:c,seq:seq.slice(s-1,c)});s=c+1;}out.push({s:s,e:seq.length,seq:seq.slice(s-1)});return out;}
+const finalFrags=frags();finalFrags.forEach(()=>{const tx=document.createElementNS(NS,'text');tx.setAttribute('class','frag');tx.style.opacity='0';T.appendChild(tx);labels.push(tx);});
+function tr(el,x,y){el.setAttribute('transform','translate('+x.toFixed(1)+' '+y.toFixed(1)+')')}
+function update(v){const active=events.filter(ev=>v>=ev.t);for(let i=0;i<bonds.length;i++){const p1=pnt(i,v),p2=pnt(i+1,v),l=bonds[i];l.setAttribute('x1',p1.x);l.setAttribute('y1',p1.y);l.setAttribute('x2',p2.x);l.setAttribute('y2',p2.y);const hit=events.find(ev=>v>=ev.t-10&&v<ev.t&&ev.p===i+1);l.classList.toggle('target',!!hit);l.classList.toggle('broken',active.some(ev=>ev.p===i+1));}
+for(let i=0;i<nodes.length;i++){const p=pnt(i,v);nodes[i].setAttribute('cx',p.x);nodes[i].setAttribute('cy',p.y)}
+events.forEach((ev,i)=>{const a=Math.max(0,ev.t-10),f=Math.max(0,Math.min(1,(v-a)/10));const p1=pnt(ev.p-1,v),p2=pnt(ev.p,v),cx=(p1.x+p2.x)/2,cy=(p1.y+p2.y)/2;const sx=cx-70+(i%3)*20,sy=cy-80-(i%2)*16;tr(waters[i],sx+(cx-sx)*f,sy+(cy-sy)*f);waters[i].style.opacity=(v>=a&&v<ev.t+4)?'1':'0';tr(enz[i],cx+32,cy+14);enz[i].style.opacity=(v>=a&&v<ev.t+4&&i%2===0)?'1':'0';});
+finalFrags.forEach((fg,i)=>{const mid=Math.floor((fg.s+fg.e)/2)-1,p=pnt(mid,v);labels[i].setAttribute('x',p.x+((i%2)?10:-18));labels[i].setAttribute('y',p.y-12+((i%3)-1)*12);labels[i].textContent='F'+(i+1)+' len '+(fg.e-fg.s+1)+' aa: '+fg.seq;labels[i].style.opacity=v>=92?'1':'0';});
+read.textContent='t = '+Math.round(v*2.4)+' min';metric.textContent=active.length+' / '+events.length+' cuts';}
+slider.addEventListener('input',()=>update(Number(slider.value)));update(0);
+</script></body></html>`,
   },
   {
     id: "food-in-the-hood-podcast",

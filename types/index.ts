@@ -17,13 +17,16 @@ export interface Output {
   id: string
   title: string
   headline: string
+  intro?: string
   description: string
+  outlook?: string
   image: {
     src: string
     alt: string
   }
   links: OutputLink[]
   selected?: boolean
+  demoHtml?: string
 }
 
 export interface BlogPostFrontmatter {

@@ -27,7 +27,19 @@ export default function OutputDetailPage() {
             <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-accent-50 border border-accent-100">
               <Image src={output.image.src} alt={language==='zh'&&zh?zh.imageAlt:output.image.alt} fill className={`object-cover ${output.id === 'food-in-the-hood-podcast' ? 'object-top' : ''}`} />
             </div>
-            <div className="mt-6 space-y-4 text-gray-700 leading-relaxed whitespace-pre-line">{language==='zh'&&zh?zh.description:output.description}</div>
+            <div className="mt-6 space-y-4 text-gray-700 leading-relaxed whitespace-pre-line">
+              {output.intro && <p>{output.intro}</p>}
+              <p>{language==='zh'&&zh?zh.description:output.description}</p>
+              {output.outlook && <p>{output.outlook}</p>}
+            </div>
+            {output.demoHtml && (
+              <div className="mt-8">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-4">{language === 'zh' ? '项目演示' : 'Project Demo'}</h2>
+                <div className="relative w-full h-[760px] rounded-2xl overflow-hidden border border-gray-200 bg-white">
+                  <iframe title={`${output.title} demo`} srcDoc={output.demoHtml} className="w-full h-full" />
+                </div>
+              </div>
+            )}
           </div>
           <aside className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm"><h2 className="text-lg font-semibold text-gray-900 mb-4">{language==='zh'?'链接':'Links'}</h2><div className="flex flex-col gap-3">{output.links.map((link) => <Button key={link.label} href={link.href} variant="secondary">{language==='zh'&&zh?.links?.[link.label]?zh.links[link.label]:link.label}</Button>)}</div></aside>
         </div>

@@ -22,6 +22,13 @@ export const researchZh: Record<string, { title: string; description: string; bu
 }
 
 export const outputsZh: Record<string, { title: string; headline: string; description: string; imageAlt: string; links?: Record<string, string> }> = {
+  chemopls: {
+    title: 'chemopls: an agent-native toolkit for PLS',
+    headline: '一个面向智能体的工具包，让偏最小二乘化学计量学分析更可复现、可检查，也更易于应用。',
+    description: 'chemopls 将多种偏最小二乘（PLS）方法整合到统一的 Python 工具包中。它支持 PLS 回归和 PLS-DA 风格的分类，也涵盖变量选择、稳健、稀疏、正交、多区块和多路 PLS 等方法。均值中心化、缩放、标准正态变量变换（SNV）和 Savitzky–Golay 变换等常用光谱预处理步骤也可在同一工作流中使用。\n\n该项目专为研究人员与 AI 智能体协作而设计。智能体首先检查数据集的完整性，识别目标变量类型与预测变量结构，并推荐合适的分析流程；随后，chemopls 以确定性方式执行预处理、建模和验证，同时记录配置、评价指标、数据集元数据、软件版本与方法来源。这样的分工既保留了科学决策的透明度，也使日常分析可以稳定复现。\n\n命令行工作流将数据诊断与实验执行分开：对于含义不明确的数值型目标变量，系统会提示用户确认；预处理和模型选择始终置于防止数据泄漏的验证流程中；方法卡则记录实现状态、已知局限与原始论文来源。chemopls 目前仍处于智能体预览阶段：重构实现的方法需谨慎审查，用于发表的结论应建立在重复验证、嵌套验证或外部验证之上。',
+    imageAlt: 'chemopls 智能体与确定性化学计量学工作流程',
+    links: { GitHub: 'GitHub' },
+  },
   'food-in-the-hood-podcast': {
     title: '播客：Food in the Hood',
     headline: '一个让食品与科学、文化、创新和社会相遇的空间。由 Amanda Sia 与马逸舟主持。',

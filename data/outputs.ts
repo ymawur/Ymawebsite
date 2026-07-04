@@ -2,6 +2,25 @@ import { Output } from "@/types";
 
 export const outputs: Output[] = [
   {
+    id: "chemopls",
+    title: "chemopls: an agent-native toolkit for PLS",
+    headline:
+      "An agent-native toolkit that makes partial least squares chemometrics reproducible, inspectable, and easier to apply.",
+    description:
+      "chemopls brings a broad family of partial least squares (PLS) methods into one consistent Python toolkit. It supports PLS regression and PLS-DA-style classification, alongside variable-selection, robust, sparse, orthogonal, multiblock, and multiway variants. Common spectral preprocessing steps—including centering, scaling, standard normal variate (SNV), and Savitzky–Golay transforms—are available through the same workflow.\n\nThe project is designed for collaboration between a researcher and an AI agent. The agent first inspects the dataset, checks its cleanliness, identifies the target type and predictor geometry, and recommends a suitable analysis harness. chemopls then performs deterministic preprocessing, modeling, and validation while recording configuration, metrics, dataset metadata, software versions, and method provenance. This division keeps scientific choices visible while making routine execution reproducible.\n\nA command-line workflow separates dataset diagnosis from experiment execution. It flags ambiguous numeric targets for confirmation, keeps preprocessing and model selection inside leakage-safe validation, and provides method cards with implementation status, limitations, and source-paper references. chemopls is currently an agent-preview package: reconstructed methods should be reviewed carefully and publication claims should rely on repeated, nested, or external validation.",
+    image: {
+      src: "/images/chemopls-overview.png",
+      alt: "chemopls agent and deterministic chemometrics workflow",
+    },
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/ymawur/chemopls",
+      },
+    ],
+    selected: true,
+  },
+  {
     id: "predicting-food-protein-hydrolysis-kinetics",
     title: "Predicting Food Protein Hydrolysis Kinetics",
     headline:

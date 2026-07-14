@@ -94,7 +94,7 @@ export const writings: Writing[] = [
           'The cycle becomes reinforcing when engineered capabilities support new experiments, which reveal principles that guide subsequent development and optimization.',
         ],
         image: {
-          src: `${rawBase}/DDOs%20cycle.svg`,
+          src: `${rawBase}/DDOs%20cycle.png`,
           alt: 'Discovery, development, optimization, and scaling cycle connecting knowledge, capacity, and value.',
           caption: 'Diagram 1 · The discovery, development, optimization, and scaling cycle',
         },
@@ -129,7 +129,7 @@ export const writings: Writing[] = [
           'Microbial biomanufacturing emerges through repeated exchanges between biological discovery, strain development, fermentation optimization, and the biosynthesis capabilities produced.',
         ],
         image: {
-          src: `${rawBase}/DDOs%20cycle%20MCF%20example.svg`,
+          src: `${rawBase}/DDOs%20cycle%20MCF%20example.png`,
           alt: 'Microbial cell factory example connecting regulation, strain, process, and molecule through repeated development cycles.',
           caption: 'Diagram 2 · The cycle illustrated through a microbial cell factory',
         },

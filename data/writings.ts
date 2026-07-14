@@ -19,6 +19,7 @@ export interface WritingSection {
 
 export interface Writing {
   slug: string;
+  path?: string;
   title: string;
   seoTitle?: string;
   seoDescription?: string;
@@ -85,6 +86,7 @@ export const writings: Writing[] = [
   },
   {
     slug: "ddos-cycle-and-microbial-cell-factory",
+    path: "/ddos-cycle",
     title: "Discover develop optimize & scale cycle",
     seoTitle: "Discover, Develop, Optimize & Scale",
     seoDescription:

@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="This page applies the Double Diamond framework to examine doctoral research progression, common research pitfalls, and opportunities for improved synthesis.">
+  <title>The Double Diamond for a PhD Thesis</title>
+  <style>
+    :root {
+      --ink: #000000;
+      --muted: #555555;
+      --paper: #ffffff;
+      --surface: #ffffff;
+      --line: #000000;
+      --discover: #000000;
+      --discover-soft: #ffffff;
+      --define: #000000;
+      --define-soft: #ffffff;
+      --develop: #000000;
+      --develop-soft: #ffffff;
+      --deliver: #000000;
+      --deliver-soft: #ffffff;
+      --danger: #000000;
+      --danger-soft: #f4f4f4;
+      --shadow: none;
+      --radius: 0;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+    svg { display: block; width: 100%; height: auto; }
+    p { margin: 0 0 1em; }
+    p:last-child { margin-bottom: 0; }
+
+    .hero {
+      min-height: 74vh;
+      display: grid;
+      align-items: end;
+      position: relative;
+      overflow: hidden;
+      color: black;
+      background: white;
+      border-bottom: 5px solid black;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      display: none;
+    }
+
+    .hero-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 110px 0 78px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 24px;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 3px;
+      border-radius: 99px;
+      background: black;
+    }
+
+    h1 {
+      max-width: 1050px;
+      margin: 0;
+      font-size: clamp(3rem, 8vw, 6.8rem);
+      line-height: .96;
+      letter-spacing: -.055em;
+      text-wrap: balance;
+    }
+
+    .hero-summary {
+      max-width: 720px;
+      margin-top: 34px;
+      color: #222;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 36px;
+      margin-top: 46px;
+      padding-top: 20px;
+      color: #444;
+      border-top: 2px solid black;
+      font-size: .9rem;
+    }
+
+    .layout {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 80px;
+      padding: 82px 0 110px;
+    }
+
+    nav {
+      position: sticky;
+      top: 28px;
+      align-self: start;
+      padding-top: 6px;
+    }
+
+    .nav-label {
+      margin: 0 0 15px;
+      color: var(--muted);
+      font-size: .73rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      display: block;
+      padding: 10px 0;
+      color: #555;
+      border-bottom: 1px solid #aaa;
+      text-decoration: none;
+      font-size: .9rem;
+      transition: color .2s ease, padding .2s ease;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      padding-left: 7px;
+      color: var(--ink);
+    }
+
+    main { min-width: 0; }
+
+    section {
+      scroll-margin-top: 32px;
+      margin-bottom: 112px;
+    }
+
+    .section-kicker {
+      margin-bottom: 10px;
+      color: black;
+      font-size: .76rem;
+      font-weight: 850;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 22px;
+      font-size: clamp(2.2rem, 4.8vw, 4.4rem);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 750px;
+      margin-bottom: 34px;
+      color: #333;
+      font-size: 1.12rem;
+    }
+
+    .diagram-card,
+    .text-card {
+      background: white;
+      border: 2px solid black;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .diagram-card {
+      overflow: hidden;
+      margin: 32px 0;
+    }
+
+    .diagram-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 24px;
+      border-bottom: 2px solid var(--line);
+    }
+
+    .diagram-title {
+      margin: 0;
+      font-size: .82rem;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .diagram-key {
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .diagram-canvas {
+      padding: 0;
+      background: white;
+    }
+
+    .diagram-canvas img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .caption {
+      padding: 18px 24px 20px;
+      color: var(--muted);
+      border-top: 1px solid #aaa;
+      font-size: .88rem;
+    }
+
+    .stage-grid,
+    .two-col {
+      display: grid;
+      gap: 18px;
+    }
+
+    .stage-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: repeat(2, 1fr); align-items: start; }
+
+    .text-card { padding: 26px; }
+    .text-card { border-width: 2px; }
+    .text-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .stage {
+      position: relative;
+      overflow: hidden;
+      padding-left: 66px;
+    }
+
+    .stage::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 23px;
+      top: 22px;
+      font-weight: 900;
+      font-size: 1.35rem;
+      opacity: .75;
+    }
+
+    .stage.discover,
+    .stage.define,
+    .stage.develop,
+    .stage.deliver { background: white; }
+
+    .callout {
+      margin: 30px 0;
+      padding: 28px 32px;
+      border: 2px solid black;
+      border-left-width: 10px;
+      border-radius: 0;
+      background: var(--danger-soft);
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: clamp(1.5rem, 3vw, 2.35rem);
+      line-height: 1.05;
+    }
+
+    blockquote {
+      margin: 36px 0;
+      padding: 0 0 0 28px;
+      border-left: 6px solid black;
+      color: black;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.35rem, 2.7vw, 2rem);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    blockquote cite {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: .78rem;
+      font-style: normal;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      padding: 40px 0 52px;
+      color: #555;
+      background: white;
+      border-top: 5px solid black;
+    }
+
+    .footer-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+    }
+
+    footer strong { color: black; }
+    footer a { color: black; text-decoration-thickness: 2px; }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; gap: 0; }
+      nav { display: none; }
+    }
+
+    @media (max-width: 680px) {
+      .hero { min-height: 64vh; }
+      .hero-inner { padding: 68px 0 48px; }
+      .layout { width: min(100% - 28px, var(--max)); padding-top: 54px; }
+      section { margin-bottom: 82px; }
+      .stage-grid, .two-col { grid-template-columns: 1fr; }
+      .diagram-head { align-items: flex-start; flex-direction: column; }
+      .diagram-key { display: none; }
+      .diagram-canvas { padding: 0; overflow: hidden; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">A research-design perspective</div>
+      <h1>The Double Diamond for a PhD thesis</h1>
+      <p class="hero-summary">This framework transforms a broad research gap into a focused question and provides meaningful answers through a completed doctoral thesis.</p>
+      <div class="hero-meta">
+        <span>Discover → Define → Develop → Deliver</span>
+        <span>Written by Yizhou Ma</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav aria-label="Section navigation">
+      <p class="nav-label">On this page</p>
+      <a href="#framework">01 · The framework</a>
+      <a href="#perception">02 · A narrow perception</a>
+      <a href="#divergence">03 · Loss in divergence</a>
+      <a href="#convergence">04 · Failure to converge</a>
+    </nav>
+
+    <main>
+      <section id="framework">
+        <p class="section-kicker">01 · The framework</p>
+        <h2>Research as a design process</h2>
+        <p class="lead">The Double Diamond represents a design process with four phases that alternate between divergent exploration and convergent synthesis.</p>
+
+        <figure class="diagram-card">
+          <div class="diagram-head">
+            <p class="diagram-title">Diagram 1 · The complete PhD Double Diamond</p>
+            <span class="diagram-key">Explore broadly ↔ synthesise deliberately</span>
+          </div>
+          <div class="diagram-canvas">
+            <img src="original-drawio-diagrams/01-complete-phd-double-diamond.png" width="2000" height="1519" alt="Original draw.io diagram showing the complete PhD Double Diamond from research topic to research question and thesis.">
+          </div>
+          <figcaption class="caption">A PhD repeatedly moves between broad exploration and focused synthesis to transform emerging possibilities into defensible research decisions.</figcaption>
+        </figure>
+
+        <div class="stage-grid">
+          <article class="text-card stage discover" data-step="1">
+            <h3>Discover</h3>
+            <p>The discover phase seeks to understand the problem through engagement with people and processes that are directly affected by the issue.</p>
+          </article>
+          <article class="text-card stage define" data-step="2">
+            <h3>Define</h3>
+            <p>Insights gathered during discovery support the definition of a specific research challenge that can be examined from a new perspective.</p>
+          </article>
+          <article class="text-card stage develop" data-step="3">
+            <h3>Develop</h3>
+            <p>A clearly defined challenge may support several solutions, which can be developed collaboratively by engaging experts with complementary perspectives.</p>
+          </article>
+          <article class="text-card stage deliver" data-step="4">
+            <h3>Deliver</h3>
+            <p>Potential solutions are validated before the best-performing approach is packaged and delivered to the users who need it most.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="perception">
+        <p class="section-kicker">02 · A narrow perception</p>
+        <h2>Beyond the “lab rat” and “paper mill” perception</h2>
+        <p class="lead">The visible phases of research, including data collection and paper writing, can overshadow the question-forming work that gives both activities meaning.</p>
+
+        <div class="two-col">
+          <article class="text-card">
+            <h3>The perceived research process</h3>
+            <p>Oftentimes, we associate research with collecting data in laboratories and the field, and writing papers as preparation for future scientists.</p>
+            <p>These activities can reinforce a narrow stereotype of doctoral research that emphasizes long working hours and extensive data collection.</p>
+          </article>
+          <article class="text-card">
+            <h3>What the system rewards</h3>
+            <p>Many training resources are organised around these objectives, including laboratory training, programming workshops, and scientific-writing support provided by universities.</p>
+            <p>The academic environment rewards development through data collection and delivery through research papers, which can encourage incoming PhD students to prioritize laboratory work and publication.</p>
+          </article>
+        </div>
+
+        <figure class="diagram-card">
+          <div class="diagram-head">
+            <p class="diagram-title">Diagram 2 · The compressed view of research</p>
+            <span class="diagram-key">Question → data → paper</span>
+          </div>
+          <div class="diagram-canvas">
+            <img src="original-drawio-diagrams/02-perceived-research-process.png" width="2000" height="1756" loading="lazy" decoding="async" alt="Original draw.io diagram showing the perceived research process from a research question through data collection and thesis writing to a research paper.">
+          </div>
+          <figcaption class="caption">This shortened diamond hides the upstream work of discovering a worthwhile topic and defining the right research question.</figcaption>
+        </figure>
+      </section>
+
+      <section id="divergence">
+        <p class="section-kicker">03 · Loss in divergence</p>
+        <h2>Activity without meaningful progress</h2>
+        <div class="two-col">
+          <article class="text-card">
+            <h3>The fear of not doing enough</h3>
+            <p>PhD progression contains two divergent phases, covering discovery through literature review and development through experimental data collection.</p>
+            <p>During these phases, PhD students broaden their knowledge across topics and conduct experiments to generate relevant data.</p>
+            <p>Much of this work can be measured using reviewed papers, laboratory hours, and the number of samples processed each day.</p>
+            <p>Quantifiable results support project management, but they can also intensify concerns about insufficient progress that are associated with impostor syndrome.</p>
+          </article>
+          <article class="text-card">
+            <h3>The garden maze</h3>
+            <p>Reading literature and conducting experiments can become “addictive” during divergent phases because many research directions and scientific methods appear worth pursuing.</p>
+            <p>PhD students can become lost in this garden maze of divergent activity and lose focus on the research questions or gaps they initially identified.</p>
+            <p>PhD students may worry that they are not doing as much as they could, even when that concern is unnecessary.</p>
+          </article>
+        </div>
+
+        <figure class="diagram-card">
+          <div class="diagram-head">
+            <p class="diagram-title">Diagram 3 · Divergence without return</p>
+            <span class="diagram-key">All the way to “perfection”</span>
+          </div>
+          <div class="diagram-canvas">
+            <img src="original-drawio-diagrams/03-divergence-to-perfection.png" width="2000" height="1833" loading="lazy" decoding="async" alt="Original draw.io diagram showing literature review and data collection diverging all the way toward perfection without convergence.">
+          </div>
+          <figcaption class="caption">Without explicit convergence, a project can continue expanding while the central research question and resulting thesis remain insufficiently resolved.</figcaption>
+        </figure>
+      </section>
+
+      <section id="convergence">
+        <p class="section-kicker">04 · Failure to converge</p>
+        <h2>Protected time for synthesis</h2>
+        <p class="lead">A prolonged focus on divergent activity can reduce the time available for proposing research questions and writing papers, which both require synthesis.</p>
+
+        <figure class="diagram-card">
+          <div class="diagram-head">
+            <p class="diagram-title">Diagram 4 · Broken convergence</p>
+            <span class="diagram-key">Activity continues; synthesis weakens</span>
+          </div>
+          <div class="diagram-canvas">
+            <img src="original-drawio-diagrams/04-fail-to-converge.png" width="2000" height="1119" loading="lazy" decoding="async" alt="Original draw.io diagram showing failure to converge from literature review to a well-defined research question and from data collection to a research paper.">
+          </div>
+          <figcaption class="caption">Convergence can become limited when evidence is not synthesised into a precise research question during the definition phase. A similar limitation occurs when experimental results are not developed into a coherent scientific narrative during the delivery phase.</figcaption>
+        </figure>
+
+        <blockquote>
+          “Far better an approximate answer to the right question, which is often vague, than an exact answer to the wrong question, which can always be made precise.”
+          <cite>John Tukey</cite>
+        </blockquote>
+
+        <div class="two-col">
+          <article class="text-card">
+            <h3>Defining the right question</h3>
+            <p>During the define phase, literature sources must be organised into themes to reveal patterns and opportunities for new research.</p>
+            <p>This iterative process requires repeated thinking and rethinking before a coherent and defensible research question can be established.</p>
+            <p>Defining the right research question is often the most challenging part of a PhD thesis because divergent activities create numerous distractions.</p>
+            <p>Consequently, synthesising a genuinely new question requires deliberate attention and sufficient time for examining connections across the available evidence.</p>
+          </article>
+          <article class="text-card">
+            <h3>Writing more than a data report</h3>
+            <p>Convergence returns during delivery because manuscript writing requires researchers to analyse and synthesise study data into a coherent narrative with scientific significance.</p>
+            <p>In many applied fields, there is a fine line between a research article and a report of data.</p>
+            <p>Both outputs may provide practical value and remain scientifically sound, although their contributions to scientific understanding can differ substantially.</p>
+            <p>A strong research article therefore requires deeper discussion and more critical analysis of the reported experimental data.</p>
+          </article>
+        </div>
+
+        <div class="callout">
+          <strong>Delivery with the reader in mind</strong>
+          <p>The research paper represents the final product for users across the scientific community, downstream application fields, and the interested general public.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <p><strong>Written by Yizhou Ma</strong><br>Assistant Professor, Wageningen University</p>
+      <p>This page draws substantial inspiration from the <a href="https://www.designcouncil.org.uk/our-resources/framework-for-innovation/">Design Council’s Framework for Innovation</a> and its Double Diamond model.</p>
+    </div>
+  </footer>
+</body>
+</html>

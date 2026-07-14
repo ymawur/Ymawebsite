@@ -1,12 +1,10 @@
 import { getAllBlogPosts } from '@/lib/blog'
-import { getAllWritings } from '@/lib/writings'
 import { MetadataRoute } from 'next'
 import { getSiteUrl } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl()
   const posts = getAllBlogPosts()
-  const writings = getAllWritings()
 
   const staticRoutes = [
     '',
@@ -28,12 +26,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  const writingRoutes = writings.map((writing) => ({
-    url: `${siteUrl}/writings/${writing.slug}`,
-    lastModified: writing.date ? new Date(writing.date) : new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }))
-
-  return [...staticRoutes, ...blogRoutes, ...writingRoutes]
+  return [...staticRoutes, ...blogRoutes]
 }

@@ -1,57 +1,40 @@
-import type { Metadata } from 'next'
-import './globals.css'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
-import { getSiteUrl } from '@/lib/site'
-import { LanguageProvider } from '@/components/LanguageProvider'
-import { LangText } from '@/components/LangText'
+import type { Metadata } from "next";
+import "./globals.css";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { getSiteUrl } from "@/lib/site";
+import { LanguageProvider } from "@/components/LanguageProvider";
+import { LangText } from "@/components/LangText";
 
-const siteUrl = getSiteUrl()
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Yizhou Ma | Automation & AI in Food Science',
-    template: '%s | Yizhou Ma',
+    default: "Yizhou Ma",
+    template: "%s | Yizhou Ma",
   },
-  description:
-    'Personal website of Yizhou Ma. Digitalization and automation in food science at Wageningen University.',
   keywords: [
-    'food science',
-    'digitalization',
-    'automation',
-    'lab automation',
-    'agentic food formulation',
+    "food science",
+    "digitalization",
+    "automation",
+    "lab automation",
+    "agentic food formulation",
   ],
-  authors: [{ name: 'Yizhou Ma' }],
-  openGraph: {
-    url: siteUrl,
-    type: 'website',
-    locale: 'en_US',
-    siteName: 'Yizhou Ma',
-    title: 'Yizhou Ma | Automation & AI in Food Science',
-    description:
-      'Personal website of Yizhou Ma. Digitalization and automation in food science at Wageningen University.',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Yizhou Ma | Automation & AI in Food Science',
-    description:
-      'Personal website of Yizhou Ma. Digitalization and automation in food science at Wageningen University.',
-  },
+  authors: [{ name: "Yizhou Ma" }],
   robots: {
     index: true,
     follow: true,
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -68,5 +51,5 @@ export default function RootLayout({
         </LanguageProvider>
       </body>
     </html>
-  )
+  );
 }

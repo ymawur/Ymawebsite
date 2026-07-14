@@ -30,7 +30,16 @@ export function generateMetadata({ params }: WritingPageProps): Metadata {
   const description = writing.seoDescription ?? writing.summary;
   const url = `${siteUrl}/writings/${writing.slug}`;
   const image = getWritingImage(writing);
-  const images = image ? [{ url: image.src, alt: image.alt }] : undefined;
+  const images = image
+    ? [
+        {
+          url: image.src,
+          alt: image.alt,
+          width: image.width,
+          height: image.height,
+        },
+      ]
+    : undefined;
 
   return {
     title,

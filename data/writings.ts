@@ -5,6 +5,8 @@ export interface WritingSection {
   image?: {
     src: string;
     alt: string;
+    width?: number;
+    height?: number;
     caption?: string;
   };
   callout?: string;
@@ -30,9 +32,7 @@ export interface Writing {
   footer?: string[];
 }
 
-const rawBase =
-  "https://raw.githubusercontent.com/ymawur/Ymawebsite/main/app/writings";
-const diagramBase = `${rawBase}/original-drawio-diagrams`;
+const writingImageBase = "/api/writing-images";
 
 export const writings: Writing[] = [
   {
@@ -57,7 +57,9 @@ export const writings: Writing[] = [
           "The second cycle begins when consumption decomposes food products into new structures within the mouth, stomach, and intestine. These structures determine nutritional and sensorial properties, which influence human well-being and may induce further structural changes during digestion.",
         ],
         image: {
-          src: `${rawBase}/FSdogma-restyled.png`,
+          src: `${writingImageBase}/fsdogma-restyled.png`,
+          width: 1800,
+          height: 1334,
           alt: "Diagram connecting ingredients, processes, structures, properties, products, humans, and nutri-sensorial properties through making and breaking food products.",
           caption: "Diagram 1 · Structure-function cycles in food",
         },
@@ -103,7 +105,9 @@ export const writings: Writing[] = [
           "The cycle becomes reinforcing when engineered capabilities support new experiments, which reveal principles that guide subsequent development and optimization.",
         ],
         image: {
-          src: `${rawBase}/DDOs%20cycle.png`,
+          src: `${writingImageBase}/ddos-cycle.png`,
+          width: 1362,
+          height: 1122,
           alt: "Discovery, development, optimization, and scaling cycle connecting knowledge, capacity, and value.",
           caption:
             "Diagram 1 · The discovery, development, optimization, and scaling cycle",
@@ -147,7 +151,9 @@ export const writings: Writing[] = [
           "Microbial biomanufacturing emerges through repeated exchanges between biological discovery, strain development, fermentation optimization, and the biosynthesis capabilities produced.",
         ],
         image: {
-          src: `${rawBase}/DDOs%20cycle%20MCF%20example.png`,
+          src: `${writingImageBase}/ddos-cycle-mcf-example.png`,
+          width: 1362,
+          height: 1122,
           alt: "Microbial cell factory example connecting regulation, strain, process, and molecule through repeated development cycles.",
           caption:
             "Diagram 2 · The cycle illustrated through a microbial cell factory",
@@ -227,7 +233,9 @@ export const writings: Writing[] = [
           "A PhD repeatedly moves between broad exploration and focused synthesis to transform emerging possibilities into defensible research decisions.",
         ],
         image: {
-          src: `${diagramBase}/01-complete-phd-double-diamond.png`,
+          src: `${writingImageBase}/phd-double-diamond.png`,
+          width: 2000,
+          height: 1519,
           alt: "Original draw.io diagram showing the complete PhD Double Diamond from research topic to research question and thesis.",
           caption: "Diagram 1 · The complete PhD Double Diamond",
         },
@@ -265,7 +273,9 @@ export const writings: Writing[] = [
           "The visible phases of research, including data collection and paper writing, can overshadow the question-forming work that gives both activities meaning.",
         ],
         image: {
-          src: `${diagramBase}/02-perceived-research-process.png`,
+          src: `${writingImageBase}/phd-perceived-research-process.png`,
+          width: 2000,
+          height: 1756,
           alt: "Original draw.io diagram showing the perceived research process from a research question through data collection and thesis writing to a research paper.",
           caption: "Diagram 2 · The compressed view of research",
         },
@@ -293,7 +303,9 @@ export const writings: Writing[] = [
         title: "Activity without meaningful progress",
         body: [],
         image: {
-          src: `${diagramBase}/03-divergence-to-perfection.png`,
+          src: `${writingImageBase}/phd-divergence-to-perfection.png`,
+          width: 2000,
+          height: 1833,
           alt: "Original draw.io diagram showing literature review and data collection diverging all the way toward perfection without convergence.",
           caption: "Diagram 3 · Divergence without return",
         },
@@ -324,7 +336,9 @@ export const writings: Writing[] = [
           "A prolonged focus on divergent activity can reduce the time available for proposing research questions and writing papers, which both require synthesis.",
         ],
         image: {
-          src: `${diagramBase}/04-fail-to-converge.png`,
+          src: `${writingImageBase}/phd-fail-to-converge.png`,
+          width: 2000,
+          height: 1119,
           alt: "Original draw.io diagram showing failure to converge from literature review to a well-defined research question and from data collection to a research paper.",
           caption: "Diagram 4 · Broken convergence",
         },

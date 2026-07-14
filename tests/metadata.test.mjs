@@ -61,3 +61,11 @@ assert(
   writingsData.includes("microbial cell factory knowledge"),
   "target writing must define a page-specific SEO description based on article content",
 );
+assert(
+  !writingsData.includes("raw.githubusercontent.com"),
+  "writing metadata/images must use same-origin image paths instead of GitHub raw URLs",
+);
+assert(
+  writingsData.includes("src: `${writingImageBase}/ddos-cycle.png`"),
+  "target writing must use a same-origin featured image endpoint without encoded spaces",
+);

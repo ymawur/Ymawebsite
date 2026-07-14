@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A reflective visual essay using microbial cell factories to explain how discovery, development, optimization, and scaling connect science with societal value.">
+  <title>Discover develop optimize&amp; scale cycle</title>
+  <style>
+    :root {
+      --ink: #000000;
+      --muted: #536575;
+      --paper: #ffffff;
+      --surface: #ffffff;
+      --blue: #285b8f;
+      --blue-dark: #0a2748;
+      --blue-pale: #eaf0f8;
+      --yellow: #d6b656;
+      --yellow-pale: #fff2cc;
+      --line: #b9d2ef;
+      --max: 1200px;
+      --shadow: none;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.68;
+    }
+
+    a { color: inherit; }
+    p { margin: 0 0 1em; }
+    p:last-child { margin-bottom: 0; }
+
+    .hero {
+      min-height: 58vh;
+      display: grid;
+      align-items: end;
+      position: relative;
+      overflow: hidden;
+      background: #ffffff;
+      border-bottom: 5px solid #000000;
+    }
+
+    .hero-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 112px 0 78px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 24px;
+      color: #000000;
+      font-size: .78rem;
+      font-weight: 850;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 4px;
+      background: #000000;
+    }
+
+    h1 {
+      max-width: 1030px;
+      margin: 0;
+      font-size: clamp(3rem, 8vw, 6.8rem);
+      line-height: .96;
+      letter-spacing: -.055em;
+      text-wrap: balance;
+    }
+
+    .hero-summary {
+      max-width: 760px;
+      margin-top: 34px;
+      color: #30475c;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 36px;
+      margin-top: 46px;
+      padding-top: 20px;
+      color: #30475c;
+      border-top: 2px solid var(--blue-dark);
+      font-size: .9rem;
+    }
+
+    .layout {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 80px;
+      padding: 82px 0 110px;
+    }
+
+    nav {
+      position: sticky;
+      top: 28px;
+      align-self: start;
+      padding-top: 6px;
+    }
+
+    .nav-label {
+      margin: 0 0 15px;
+      color: var(--muted);
+      font-size: .73rem;
+      font-weight: 850;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      display: block;
+      padding: 11px 0;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      font-size: .9rem;
+      transition: color .2s ease, padding .2s ease, border-color .2s ease;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      padding-left: 7px;
+      color: var(--blue-dark);
+      border-color: var(--blue);
+    }
+
+    main { min-width: 0; }
+    section { scroll-margin-top: 32px; margin-bottom: 116px; }
+
+    .section-kicker {
+      margin-bottom: 10px;
+      color: var(--blue);
+      font-size: .76rem;
+      font-weight: 850;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 22px;
+      font-size: clamp(2.2rem, 4.8vw, 4.4rem);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 790px;
+      margin-bottom: 34px;
+      color: #344c61;
+      font-size: 1.12rem;
+    }
+
+    .diagram-card,
+    .text-card,
+    .gap-card {
+      background: var(--surface);
+      border: 2px solid var(--blue-dark);
+      box-shadow: var(--shadow);
+    }
+
+    .diagram-card { overflow: hidden; margin: 32px 0; }
+    .diagram-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 24px;
+      border-bottom: 2px solid var(--blue-dark);
+      background: #ffffff;
+    }
+
+    .diagram-title {
+      margin: 0;
+      font-size: .82rem;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .diagram-key { color: var(--muted); font-size: .78rem; }
+    .diagram-canvas { padding: clamp(14px, 3vw, 34px); background: #ffffff; }
+    .diagram-canvas img { display: block; width: 100%; height: auto; }
+
+    .caption {
+      padding: 18px 24px 20px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: .88rem;
+    }
+
+    .two-col,
+    .gap-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .text-card { padding: 28px; }
+    .text-card h3,
+    .gap-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.22rem;
+      line-height: 1.2;
+    }
+
+    .cycle-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin: 34px 0;
+      border: 2px solid var(--blue-dark);
+      background: #ffffff;
+    }
+
+    .cycle-step {
+      min-height: 166px;
+      padding: 24px;
+      border-right: 1px solid var(--line);
+    }
+
+    .cycle-step:last-child { border-right: 0; }
+    .cycle-step:nth-child(2),
+    .cycle-step:nth-child(4) { background: #ffffff; }
+
+    .step-number {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--yellow);
+      font-size: 1.65rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .cycle-step h3 { margin: 0 0 9px; font-size: 1.03rem; }
+    .cycle-step p { color: var(--muted); font-size: .9rem; line-height: 1.52; }
+
+    .gap-grid { margin-top: 18px; }
+    .gap-card { position: relative; padding: 28px 28px 28px 82px; }
+    .gap-card::before {
+      content: attr(data-gap);
+      position: absolute;
+      left: 26px;
+      top: 24px;
+      color: var(--yellow);
+      font-size: 1.45rem;
+      font-weight: 900;
+    }
+
+    .gap-card small {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--blue);
+      font-size: .7rem;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      padding: 42px 0 54px;
+      color: #555555;
+      background: #ffffff;
+      border-top: 5px solid #000000;
+    }
+
+    .footer-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      align-items: end;
+    }
+
+    footer strong { color: #000000; }
+
+    @media (max-width: 1000px) {
+      .cycle-strip { grid-template-columns: repeat(2, 1fr); }
+      .cycle-step:nth-child(2) { border-right: 0; }
+      .cycle-step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; gap: 0; }
+      nav { display: none; }
+    }
+
+    @media (max-width: 680px) {
+      .hero { min-height: 52vh; }
+      .hero-inner { padding: 70px 0 50px; }
+      .layout { width: min(100% - 28px, var(--max)); padding-top: 56px; }
+      section { margin-bottom: 84px; }
+      .two-col, .gap-grid, .cycle-strip { grid-template-columns: 1fr; }
+      .cycle-step { border-right: 0; border-bottom: 1px solid var(--line); }
+      .cycle-step:last-child { border-bottom: 0; }
+      .diagram-head { align-items: flex-start; flex-direction: column; }
+      .diagram-key { display: none; }
+      .diagram-canvas { padding: 8px; }
+      .gap-card { padding-left: 72px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">A cycle connecting science and society</div>
+      <h1>Discover develop optimize&amp; scale cycle</h1>
+      <div class="hero-meta">
+        <span>Discovery → Development → Optimization and scaling → New capacity</span>
+        <span>Illustrated through microbial cell factories</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav aria-label="Section navigation">
+      <p class="nav-label">On this page</p>
+      <a href="#cycle">01 · The DDOs cycle</a>
+      <a href="#mcf">02 · A microbial cell factory</a>
+      <a href="#gaps">03 · Capacity gaps in food science</a>
+    </nav>
+
+    <main>
+      <section id="cycle">
+        <p class="section-kicker">01 · The DDOs cycle</p>
+        <h2>A reinforcing cycle of knowledge and capacity</h2>
+        <p class="lead">Scientific discovery provides fundamental principles, while engineering and optimization translate those principles into capabilities that function under practical conditions.</p>
+
+        <figure class="diagram-card">
+          <div class="diagram-head">
+            <p class="diagram-title">Diagram 1 · The discovery, development, optimization, and scaling cycle</p>
+            <span class="diagram-key">Knowledge ↔ capacity ↔ value</span>
+          </div>
+          <div class="diagram-canvas">
+            <img src="DDOs cycle.svg" width="681" height="561" alt="Cycle connecting science and discovery with engineering development, optimization and scaling, new scientific capability, and industrial and economic value.">
+          </div>
+          <figcaption class="caption">The cycle becomes reinforcing when engineered capabilities support new experiments, which reveal principles that guide subsequent development and optimization.</figcaption>
+        </figure>
+
+        <div class="cycle-strip" aria-label="Four connected stages of the DDOs cycle">
+          <article class="cycle-step">
+            <span class="step-number">01</span>
+            <h3>Discover</h3>
+            <p>Fundamental principles explain how a system behaves and identify mechanisms that could support new functions. This is science.</p>
+          </article>
+          <article class="cycle-step">
+            <span class="step-number">02</span>
+            <h3>Develop</h3>
+            <p>Engineering converts scientific theories and understanding into instruments, processes, models, or materials that operate and interact.</p>
+          </article>
+          <article class="cycle-step">
+            <span class="step-number">03</span>
+            <h3>Optimize and scale</h3>
+            <p>Optimization improves efficiency, while scaling makes volume effects visible across conditions, sources, and application contexts.</p>
+          </article>
+          <article class="cycle-step">
+            <span class="step-number">04</span>
+            <h3>Enable</h3>
+            <p>The resulting capacity supports new science, while optimized and scaled development creates routes toward industrial, economic, and broader societal value.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="mcf">
+        <p class="section-kicker">02 · A microbial cell factory</p>
+        <h2>One cycle, viewed through microbial biomanufacturing</h2>
+        <p class="lead">A microbial cell factory illustrates how molecular understanding can progress through strain engineering and bioprocess optimization toward scalable manufacturing.</p>
+
+        <figure class="diagram-card">
+          <div class="diagram-head">
+            <p class="diagram-title">Diagram 2 · The cycle illustrated through a microbial cell factory</p>
+            <span class="diagram-key">Regulation → strain → process → molecule</span>
+          </div>
+          <div class="diagram-canvas">
+            <img src="DDOs cycle MCF example.svg" width="681" height="561" loading="lazy" decoding="async" alt="Microbial cell factory example connecting gene expression and metabolic regulation, strain development, fermentation scale-up, biosynthesis, and microbial biomanufacturing.">
+          </div>
+          <figcaption class="caption">Microbial biomanufacturing emerges through repeated exchanges between biological discovery, strain development, fermentation optimization, and the biosynthesis capabilities produced.</figcaption>
+        </figure>
+
+        <div class="two-col">
+          <article class="text-card">
+            <h3>For science</h3>
+            <p>Knowledge of gene expression and metabolic regulation guides strain development toward the biosynthesis of selected molecules.</p>
+            <p>Engineered strains then become experimental platforms for probing pathway constraints, regulatory responses, and previously inaccessible biological functions.</p>
+          </article>
+          <article class="text-card">
+            <h3>For society</h3>
+            <p>Fermentation optimization and bioprocess scale-up determine whether biosynthesis can become reliable, efficient, and accessible beyond laboratory demonstrations.</p>
+            <p>Scalable microbial biomanufacturing can subsequently support new ingredients, materials, medicines, and production routes with industrial and economic relevance.</p>
+          </article>
+        </div>
+
+      </section>
+
+      <section id="gaps">
+        <p class="section-kicker">03 · Capacity gaps in food science</p>
+        <h2>Capacity gaps in food science</h2>
+        <p class="lead">These gaps concern the relationship between what instruments measure, what experiments reveal, and what predictive models retain across changing sources.</p>
+
+        <div class="gap-grid">
+          <article class="gap-card" data-gap="01">
+            <small>Development</small>
+            <h3>The instrument–perception gap</h3>
+            <p>Measurements should represent food properties in ways that agree with human sensory perception and remain useful for engineering decisions.</p>
+          </article>
+          <article class="gap-card" data-gap="02">
+            <small>Optimization</small>
+            <h3>Scaling out messy experiments</h3>
+            <p>Food experiments involve variable materials and complex responses, requiring higher throughput without removing scientifically meaningful sources of variation.</p>
+          </article>
+          <article class="gap-card" data-gap="03">
+            <small>Scaling</small>
+            <h3>Extending the search space</h3>
+            <p>Improved throughput expands the formulations and processing conditions that can be explored, creating opportunities for unexpected and transferable insights.</p>
+          </article>
+          <article class="gap-card" data-gap="04">
+            <small>Optimization</small>
+            <h3>Making predictive models generalize</h3>
+            <p>Cross-source generalization determines whether predictive food models retain useful performance across ingredients, instruments, laboratories, and datasets.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <p><strong>Yizhou Ma</strong><br>Wageningen University</p>
+    </div>
+  </footer>
+</body>
+</html>

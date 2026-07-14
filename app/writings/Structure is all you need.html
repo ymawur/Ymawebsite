@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A reflection on structure as the connecting language of food production, perception, digestion, and human well-being.">
+  <title>Structure is all you need</title>
+  <style>
+    :root {
+      --ink: #000000;
+      --muted: #536575;
+      --paper: #ffffff;
+      --surface: #ffffff;
+      --blue: #285b8f;
+      --blue-dark: #0a2748;
+      --blue-pale: #eaf0f8;
+      --line: #cbd5df;
+      --max: 1200px;
+      --shadow: 0 18px 50px rgba(10, 39, 72, .08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.68;
+    }
+
+    a { color: inherit; }
+    p { margin: 0 0 1em; }
+    p:last-child { margin-bottom: 0; }
+
+    .hero {
+      min-height: 58vh;
+      display: grid;
+      align-items: end;
+      background: #ffffff;
+      border-bottom: 5px solid #000000;
+    }
+
+    .hero-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 112px 0 78px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 24px;
+      color: var(--blue-dark);
+      font-size: .78rem;
+      font-weight: 850;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 4px;
+      background: #000000;
+    }
+
+    h1 {
+      max-width: 1030px;
+      margin: 0;
+      font-size: clamp(3rem, 8vw, 6.8rem);
+      line-height: .96;
+      letter-spacing: -.055em;
+      text-wrap: balance;
+    }
+
+    .hero-summary {
+      max-width: 790px;
+      margin-top: 34px;
+      color: #30475c;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 36px;
+      margin-top: 46px;
+      padding-top: 20px;
+      color: #30475c;
+      border-top: 2px solid var(--blue-dark);
+      font-size: .9rem;
+    }
+
+    .layout {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 80px;
+      padding: 82px 0 110px;
+    }
+
+    nav {
+      position: sticky;
+      top: 28px;
+      align-self: start;
+      padding-top: 6px;
+    }
+
+    .nav-label {
+      margin: 0 0 15px;
+      color: var(--muted);
+      font-size: .73rem;
+      font-weight: 850;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      display: block;
+      padding: 11px 0;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      font-size: .9rem;
+      transition: color .2s ease, padding .2s ease, border-color .2s ease;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      padding-left: 7px;
+      color: var(--blue-dark);
+      border-color: var(--blue);
+    }
+
+    main { min-width: 0; }
+    section { scroll-margin-top: 32px; margin-bottom: 116px; }
+
+    .section-kicker {
+      margin-bottom: 10px;
+      color: var(--blue);
+      font-size: .76rem;
+      font-weight: 850;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 22px;
+      font-size: clamp(2.2rem, 4.8vw, 4.4rem);
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+
+    h3 {
+      margin: 0 0 15px;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+    }
+
+    .lead {
+      max-width: 800px;
+      margin-bottom: 34px;
+      color: #344c61;
+      font-size: 1.12rem;
+    }
+
+    .diagram-card,
+    .text-card,
+    .gap-card {
+      background: var(--surface);
+      border: 2px solid var(--blue-dark);
+      box-shadow: var(--shadow);
+    }
+
+    .diagram-card { margin: 0; }
+
+    .diagram-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 24px;
+      border-bottom: 2px solid var(--blue-dark);
+      background: #ffffff;
+    }
+
+    .diagram-title {
+      margin: 0;
+      font-size: .78rem;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .diagram-key { color: var(--muted); font-size: .78rem; }
+    .diagram-canvas { padding: clamp(14px, 3vw, 34px); background: #ffffff; }
+    .diagram-canvas img { display: block; width: 100%; height: auto; }
+
+    .caption {
+      padding: 18px 24px 20px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: .85rem;
+    }
+
+    .text-card { padding: clamp(28px, 4vw, 46px); }
+    .text-card p { color: #344c61; }
+    .text-card p + p { margin-top: 22px; }
+
+    .cycle-strip {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 34px;
+      border: 2px solid var(--blue-dark);
+      background: #ffffff;
+    }
+
+    .cycle-step {
+      min-height: 210px;
+      padding: 30px;
+      border-right: 1px solid var(--line);
+    }
+
+    .cycle-step:last-child { border-right: 0; }
+
+    .step-number {
+      display: block;
+      margin-bottom: 38px;
+      color: var(--blue);
+      font-size: .72rem;
+      font-weight: 850;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .cycle-step p { color: #41586d; font-size: .94rem; }
+
+    .complexity {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: clamp(28px, 5vw, 60px);
+      align-items: center;
+      padding: clamp(30px, 5vw, 54px);
+      border: 2px solid var(--blue-dark);
+    }
+
+    .formula {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 150px;
+      color: var(--blue-dark);
+      background: var(--blue-pale);
+      font-size: clamp(3rem, 7vw, 5.4rem);
+      font-weight: 850;
+      line-height: 1;
+    }
+
+    math {
+      white-space: nowrap;
+      font-family: "Cambria Math", "STIX Two Math", serif;
+    }
+
+    .formula math { font-size: 1em; }
+    .complexity-copy math { display: inline-block; font-size: 1.05em; }
+
+    .complexity-copy p { color: #344c61; }
+    .complexity-copy p + p { margin-top: 20px; }
+
+    .closing-box {
+      margin-top: -42px;
+      margin-bottom: 92px;
+      padding: clamp(30px, 5vw, 54px);
+      color: var(--blue-dark);
+      background: #ffffff;
+      border: 2px solid var(--blue-dark);
+      box-shadow: var(--shadow);
+      font-size: clamp(1.45rem, 3vw, 2.4rem);
+      font-weight: 750;
+      line-height: 1.25;
+      letter-spacing: -.025em;
+    }
+
+    footer {
+      padding: 42px 0 54px;
+      color: #555555;
+      background: #ffffff;
+      border-top: 5px solid #000000;
+    }
+
+    .footer-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+    }
+
+    footer strong { color: #000000; }
+    .attribution { max-width: 560px; text-align: right; }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; gap: 0; }
+      nav { display: none; }
+    }
+
+    @media (max-width: 680px) {
+      .hero { min-height: 52vh; }
+      .hero-inner { padding: 70px 0 50px; }
+      .layout { width: min(100% - 28px, var(--max)); padding-top: 56px; }
+      section { margin-bottom: 84px; }
+      .cycle-strip, .complexity { grid-template-columns: 1fr; }
+      .cycle-step { border-right: 0; border-bottom: 1px solid var(--line); }
+      .cycle-step:last-child { border-bottom: 0; }
+      .diagram-head { display: block; }
+      .diagram-key { display: none; }
+      .diagram-canvas { padding: 8px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .attribution { text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">A reflection on food structure and function</div>
+      <h1>Structure is all you need</h1>
+      <p class="hero-summary">Food is produced through structuring and consumed through structural breakdown.</p>
+      <div class="hero-meta">
+        <span>Making food products &rarr; Breaking food products</span>
+        <span>Structure &harr; Function &harr; Human response</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav aria-label="Section navigation">
+      <p class="nav-label">On this page</p>
+      <a href="#reflection">Making and breaking</a>
+      <a href="#complexity">The n<sup>n</sup> problem</a>
+    </nav>
+
+    <main>
+      <section id="reflection">
+        <p class="section-kicker">Making and breaking</p>
+        <h2>Structure as the central relation connecting food production and consumption</h2>
+        <p class="lead">Food production differs from manufacturing fields where quality is commonly defined through durability and sustained functional performance. Making food is for breaking food.</p>
+
+        <div class="text-card">
+          <p>Food is ultimately designed to be broken into nutrients and sometimes anti-nutrients during human consumption.</p>
+          <p>Biomass derived from plants and animals provides the foundation for most food ingredients and formulated products. Processing transforms these ingredients into structures, while each structure carries techno-functional properties that can guide subsequent processing decisions. Human perception measures the resulting functionality differently because sensorial properties ultimately define the identity of a food product.</p>
+          <p>The second cycle begins when consumption decomposes food products into new structures within the mouth, stomach, and intestine. These structures determine nutritional and sensorial properties, which influence human well-being and may induce further structural changes during digestion. Making and breaking are therefore connected cycles in which structure mediates both product performance and physiological consequence.</p>
+        </div>
+
+        <figure class="diagram-card" style="margin-top: 34px;">
+          <div class="diagram-head">
+            <p class="diagram-title">Diagram 1 &middot; Structure-function cycles in food</p>
+            <span class="diagram-key">Making &harr; structure &harr; breaking</span>
+          </div>
+          <div class="diagram-canvas">
+            <img src="FSdogma-restyled.png" width="1800" height="1334" alt="Diagram connecting ingredients, processes, structures, properties, products, humans, and nutri-sensorial properties through making and breaking food products.">
+          </div>
+          <figcaption class="caption">The diagram connects the making and breaking of food products through their changing structures and functions.</figcaption>
+        </figure>
+      </section>
+
+      <section id="complexity">
+        <p class="section-kicker">The combinatorial challenge</p>
+        <h2>Structure-function pairs form an expanding space</h2>
+        <div class="complexity">
+          <div class="formula" aria-label="n to the power n"><math display="block"><msup><mi>n</mi><mi>n</mi></msup></math></div>
+          <div class="complexity-copy">
+            <p>Food science research has focused strongly on experimentally characterizing structure-function pairs because foods contain many structural scales and many corresponding functions.</p>
+            <p>Processing can readily create additional pairs within each system, while diverse cooking methods expand the experimental space toward an <math><msup><mi>n</mi><mi>n</mi></msup></math> problem.</p>
+            <p>Food engineers examine how processing changes structure-function pairs, whereas food biochemists examine how consumption and digestive behaviour reshapes these pairs.</p>
+            <p>This expanding space remains challenging to characterize because each ingredient, process, structure, and behaviour can generate additional combinations.</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="closing-box">Structure-function pairs bring system-specific understanding but cursed by vast food design space</aside>
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <p><strong>Structure is all you need</strong><br>Yizhou Ma<br>Wageningen University</p>
+      <p class="attribution">This reflection was inspired by the S-PRO2 model outlined by Erich Windhab for food processing and structure.</p>
+    </div>
+  </footer>
+</body>
+</html>

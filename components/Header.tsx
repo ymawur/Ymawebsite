@@ -10,12 +10,14 @@ const navItems = {
     { href: '/', label: 'Home' },
     { href: '/research', label: 'Research' },
     { href: '/outputs', label: 'Projects' },
+    { href: '/writings', label: 'Writings' },
     { href: '/collaborate', label: 'Collaborate' },
   ],
   zh: [
     { href: '/', label: '首页' },
     { href: '/research', label: '研究' },
     { href: '/outputs', label: '项目' },
+    { href: '/writings', label: '写作' },
     { href: '/collaborate', label: '合作' },
   ],
 }

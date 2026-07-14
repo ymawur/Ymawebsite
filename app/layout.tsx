@@ -11,7 +11,7 @@ const siteUrl = getSiteUrl()
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Yizhou Ma | Personal Website',
+    default: 'Yizhou Ma | Automation & AI in Food Science',
     template: '%s | Yizhou Ma',
   },
   description:
@@ -29,13 +29,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: 'Yizhou Ma',
-    title: 'Yizhou Ma | Personal Website',
+    title: 'Yizhou Ma | Automation & AI in Food Science',
     description:
       'Personal website of Yizhou Ma. Digitalization and automation in food science at Wageningen University.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Yizhou Ma | Personal Website',
+    title: 'Yizhou Ma | Automation & AI in Food Science',
     description:
       'Personal website of Yizhou Ma. Digitalization and automation in food science at Wageningen University.',
   },

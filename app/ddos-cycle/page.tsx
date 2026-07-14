@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { getSiteUrl } from "@/lib/site";
+import { getWritingBySlug, getWritingPath } from "@/lib/writings";
 import { WritingArticle } from "@/components/WritingArticle";
-import {
-  getAllWritings,
-  getWritingBySlug,
-  getWritingPath,
-} from "@/lib/writings";
 
-interface WritingPageProps {
-  params: {
-    slug: string;
-  };
+const ddosCycleSlug = "ddos-cycle-and-microbial-cell-factory";
+
+function getDdosCycleWriting() {
+  return getWritingBySlug(ddosCycleSlug);
 }
 
 function getWritingImage(
@@ -20,12 +16,8 @@ function getWritingImage(
   return writing.sections.find((section) => section.image)?.image;
 }
 
-export function generateStaticParams() {
-  return getAllWritings().map((writing) => ({ slug: writing.slug }));
-}
-
-export function generateMetadata({ params }: WritingPageProps): Metadata {
-  const writing = getWritingBySlug(params.slug);
+export function generateMetadata(): Metadata {
+  const writing = getDdosCycleWriting();
 
   if (!writing) return {};
 
@@ -70,16 +62,10 @@ export function generateMetadata({ params }: WritingPageProps): Metadata {
   };
 }
 
-export default function WritingPage({ params }: WritingPageProps) {
-  const writing = getWritingBySlug(params.slug);
+export default function DdosCyclePage() {
+  const writing = getDdosCycleWriting();
 
   if (!writing) notFound();
-
-  const canonicalPath = getWritingPath(writing);
-
-  if (canonicalPath !== `/writings/${params.slug}`) {
-    redirect(canonicalPath);
-  }
 
   return <WritingArticle writing={writing} />;
 }

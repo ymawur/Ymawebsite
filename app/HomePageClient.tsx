@@ -51,7 +51,7 @@ export function HomePageClient() {
               <p className="text-gray-700 leading-relaxed mb-8">
                 {language === "zh"
                   ? "我在荷兰瓦赫宁根大学（WUR）从事食品科学领域的自动化与AI研究。我的职业追求源于对问题成因的深入剖析和开发提升效率的工具。我的研究领域聚焦于实验室自动化、AI智能体的食品配方设计，以及食品材料结构的表征学习。"
-                  : "Automation & AI in Food Science at WUR. My professional pursuits driven by dissecting causes of problems and building tools to increase capacity. In my research, I work on lab automation of solid food testing, agentic food formulation, and structural representation of food materials."}
+                  : "Automation & AI in Food Science at WUR. My professional pursuits are driven by dissecting causes of problems and building tools to increase capacity. In my research, I work on lab automation of solid food testing, agentic food formulation, and structural representation of food materials."}
               </p>
             </div>
             <div className="flex-shrink-0 md:ml-auto">

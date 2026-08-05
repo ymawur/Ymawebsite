@@ -40,7 +40,7 @@ export const writings: Writing[] = [
   {
     slug: "fermentation-in-food-biomanufacturing",
     title: "A process for all: fermentation in food biomanufacturing",
-    kicker: "Food biomanufacturing",
+    kicker: "Funded project review",
     summary:
       "Fermentation as a complex bioprocess covers many different subfields within food science.",
     date: "2026-08-05",

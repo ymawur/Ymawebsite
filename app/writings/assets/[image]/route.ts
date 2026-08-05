@@ -16,25 +16,38 @@ const CONTENT_TYPES: Record<string, string> = {
   ".webp": "image/webp",
 };
 
+const ASSET_DIRECTORIES = [
+  path.join("app", "writings", "assets"),
+  path.join("content", "writings", "assets"),
+  path.join("public", "images", "writings"),
+  path.join("public", "images"),
+  "assets",
+];
+
 export async function GET(
   _request: Request,
   { params }: WritingAssetRouteProps,
 ) {
-  try {
-    const file = await readFile(
-      path.join(process.cwd(), "app", "writings", "assets", params.image),
-    );
-    const contentType =
-      CONTENT_TYPES[path.extname(params.image).toLowerCase()] ??
-      "application/octet-stream";
+  const contentType =
+    CONTENT_TYPES[path.extname(params.image).toLowerCase()] ??
+    "application/octet-stream";
 
-    return new NextResponse(file, {
-      headers: {
-        "Cache-Control": "public, max-age=31536000, immutable",
-        "Content-Type": contentType,
-      },
-    });
-  } catch {
-    return new NextResponse("Not found", { status: 404 });
+  for (const directory of ASSET_DIRECTORIES) {
+    try {
+      const file = await readFile(
+        path.join(process.cwd(), directory, params.image),
+      );
+
+      return new NextResponse(file, {
+        headers: {
+          "Cache-Control": "public, max-age=31536000, immutable",
+          "Content-Type": contentType,
+        },
+      });
+    } catch {
+      // Try the next supported writing-asset location.
+    }
   }
+
+  return new NextResponse("Not found", { status: 404 });
 }

@@ -36,6 +36,12 @@ function isTableSeparator(row: string) {
   return /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(row);
 }
 
+function normalizeWritingAssetPaths(source: string) {
+  return source
+    .replace(/\]\(assets\//g, "](/writings/assets/")
+    .replace(/src=["']assets\//g, 'src="/writings/assets/');
+}
+
 function renderMarkdownTables(source: string) {
   const lines = source.split("\n");
   const renderedLines: string[] = [];
@@ -88,7 +94,7 @@ async function WritingMdxContent({ contentFile }: { contentFile: string }) {
     "utf8",
   );
   const { content } = await compileMDX({
-    source: renderMarkdownTables(source),
+    source: renderMarkdownTables(normalizeWritingAssetPaths(source)),
     components: mdxComponents,
     options: {
       parseFrontmatter: false,

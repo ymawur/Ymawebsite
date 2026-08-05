@@ -6,13 +6,89 @@ import { Container } from "@/components/Container";
 import { getWritingBySlug } from "@/lib/writings";
 import { mdxComponents } from "@/lib/mdx-components";
 
+function escapeMdxText(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/{/g, "&#123;")
+    .replace(/}/g, "&#125;");
+}
+
+function renderInlineMarkdown(value: string) {
+  return escapeMdxText(value).replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    (_match, label: string, href: string) =>
+      `<a href="${href.replace(/&/g, "&amp;")}">${label}</a>`,
+  );
+}
+
+function splitTableRow(row: string) {
+  return row
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim());
+}
+
+function isTableSeparator(row: string) {
+  return /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(row);
+}
+
+function renderMarkdownTables(source: string) {
+  const lines = source.split("\n");
+  const renderedLines: string[] = [];
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    const separator = lines[index + 1];
+
+    if (line.includes("|") && separator && isTableSeparator(separator)) {
+      const headers = splitTableRow(line);
+      const rows: string[][] = [];
+      index += 2;
+
+      while (index < lines.length && lines[index].trim().startsWith("|")) {
+        rows.push(splitTableRow(lines[index]));
+        index += 1;
+      }
+
+      index -= 1;
+      renderedLines.push(
+        "<table>",
+        "<thead>",
+        "<tr>",
+        ...headers.map((header) => `<th>${renderInlineMarkdown(header)}</th>`),
+        "</tr>",
+        "</thead>",
+        "<tbody>",
+        ...rows.flatMap((row) => [
+          "<tr>",
+          ...headers.map(
+            (_header, cellIndex) =>
+              `<td>${renderInlineMarkdown(row[cellIndex] ?? "")}</td>`,
+          ),
+          "</tr>",
+        ]),
+        "</tbody>",
+        "</table>",
+      );
+    } else {
+      renderedLines.push(line);
+    }
+  }
+
+  return renderedLines.join("\n");
+}
+
 async function WritingMdxContent({ contentFile }: { contentFile: string }) {
   const source = await fs.readFile(
     path.join(process.cwd(), "content", "writings", contentFile),
     "utf8",
   );
   const { content } = await compileMDX({
-    source,
+    source: renderMarkdownTables(source),
     components: mdxComponents,
     options: {
       parseFrontmatter: false,

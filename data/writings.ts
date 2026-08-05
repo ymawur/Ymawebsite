@@ -29,6 +29,7 @@ export interface Writing {
   hero: string;
   byline: string;
   sourceFile: string;
+  contentFile?: string;
   sections: WritingSection[];
   footer?: string[];
 }
@@ -36,6 +37,19 @@ export interface Writing {
 const writingImageBase = "/api/writing-images";
 
 export const writings: Writing[] = [
+  {
+    slug: "fermentation-in-food-biomanufacturing",
+    title: "A process for all: fermentation in food biomanufacturing",
+    kicker: "Food biomanufacturing",
+    summary:
+      "Fermentation as a complex bioprocess covers many different subfields within food science.",
+    date: "2026-08-05",
+    hero: "Improvement · Defence · Valorization · Precision fermentation",
+    byline: "Yizhou Ma · Wageningen University",
+    sourceFile: "fermentation-in-food-biomanufacturing.md",
+    contentFile: "fermentation-in-food-biomanufacturing.md",
+    sections: [],
+  },
   {
     slug: "structure-is-all-you-need",
     title: "Structure is all you need",

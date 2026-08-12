@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { getSiteUrl } from "@/lib/site";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import { LangText } from "@/components/LangText";
+import { Analytics } from "@vercel/analytics/next";
 
 const siteUrl = getSiteUrl();
 
@@ -49,6 +50,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );

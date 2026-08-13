@@ -38,6 +38,19 @@ const writingImageBase = "/api/writing-images";
 
 export const writings: Writing[] = [
   {
+    slug: "alternative-fats",
+    title: "Alternative fats: non-lipid replacers, plant fats, and biotechnology",
+    kicker: "Funded project review",
+    summary:
+      "Funded alternative-fat research spans protein-based replacers, structured plant lipids, fermentation, and cultivated fat.",
+    date: "2026-08-13",
+    hero: "Non-lipid replacers · Plant fats · Biotechnology",
+    byline: "Yizhou Ma · Wageningen University",
+    sourceFile: "alternative-fats.md",
+    contentFile: "alternative-fats.md",
+    sections: [],
+  },
+  {
     slug: "fermentation-in-food-biomanufacturing",
     title: "A process for all: fermentation in food biomanufacturing",
     kicker: "Funded project review",

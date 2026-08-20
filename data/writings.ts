@@ -38,6 +38,20 @@ const writingImageBase = "/api/writing-images";
 
 export const writings: Writing[] = [
   {
+    slug: "alternative-protein-routes",
+    title:
+      "Two alternative protein routes: plants for bulk and fermentation for function",
+    kicker: "Funded project review",
+    summary:
+      "Plant proteins provide bulk and physical structure, while precision fermentation supplies selected proteins with targeted functions.",
+    date: "2026-08-20",
+    hero: "Plants for bulk · Fermentation for function",
+    byline: "Yizhou Ma · Wageningen University",
+    sourceFile: "alternative-protein-routes.md",
+    contentFile: "alternative-protein-routes.md",
+    sections: [],
+  },
+  {
     slug: "alternative-fats",
     title: "Alternative fats: non-lipid replacers, plant fats, and biotechnology",
     kicker: "Funded project review",

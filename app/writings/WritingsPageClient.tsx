@@ -18,14 +18,14 @@ export function WritingsPageClient({ writings }: WritingsPageClientProps) {
       <section className="py-12 bg-accent-50/50">
         <Container>
           <p className="text-sm font-medium text-accent-700 mb-3">
-            {isZh ? "文章与网页作品" : "Essays and web-native pieces"}
+            {isZh ? "博客文章" : "Essays and web-native pieces"}
           </p>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            {isZh ? "写作" : "Writings"}
+            {isZh ? "博客文章" : "Writings"}
           </h1>
           <p className="max-w-3xl text-lg text-gray-600 leading-relaxed">
             {isZh
-              ? "长篇写作、随笔与网页化文章会发布在这里。"
+              ? "长篇写作和随笔的中文版会发布在微信公众号【笨谈】。"
               : "Long-form writing, essays, and web-native articles live here."}
           </p>
         </Container>

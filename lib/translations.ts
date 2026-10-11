@@ -22,6 +22,13 @@ export const researchZh: Record<string, { title: string; description: string; bu
 }
 
 export const outputsZh: Record<string, { title: string; headline: string; description: string; imageAlt: string; links?: Record<string, string> }> = {
+  'protein-adsorption': {
+    title: '蛋白质吸附：跨来源预测',
+    headline: '基于文献的数据集与建模流程，用于估计蛋白质在气–水界面的吸附行为。',
+    description: '制作泡沫食品时，蛋白质需要迅速到达新形成的气泡表面。在这个项目中，我汇集了来自 14 项研究、12 种蛋白质来源的 47 条吸附曲线，统一测量数据，并用简洁的动力学模型描述每条曲线。随后，我通过预测训练中完全排除的蛋白质来源，比较基于组成的动力学预测方法与机器学习模型 TabPFN。\n\n两种方法根据组成预测天然种子贮藏蛋白时，准确度相近。更有价值的发现是预测在哪些情况下无法迁移：加工、胶体状态以及不同的生物学蛋白质类别会削弱这一关系。数据集与脚本为植物蛋白筛选提供了起点，而预测泡沫稳定性仍需要额外的测量。',
+    imageAlt: '展示跨来源蛋白质吸附建模流程的图文摘要',
+    links: { Paper: '论文', 'Data and code': '数据与代码' },
+  },
   chemopls: {
     title: 'chemopls: an agent-native toolkit for PLS',
     headline: '一个面向智能体的工具包，让偏最小二乘化学计量学分析更可复现、可检查，也更易于应用。',

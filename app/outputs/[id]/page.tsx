@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useState } from 'react'
 import { notFound, useParams } from 'next/navigation'
 import { Container } from '@/components/Container'
 import { Button } from '@/components/Button'
@@ -12,6 +13,7 @@ export default function OutputDetailPage() {
   const params = useParams<{ id: string }>()
   const output = outputs.find((item) => item.id === params.id)
   const { language } = useLanguage()
+  const [failedImage, setFailedImage] = useState<string | null>(null)
   if (!output) notFound()
   const zh = outputsZh[output.id]
   const isHydrolysis = output.id === 'predicting-food-protein-hydrolysis-kinetics'
@@ -33,13 +35,21 @@ export default function OutputDetailPage() {
               </div>
             ) : (
               <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-accent-50 border border-accent-100">
-                <Image src={output.image.src} alt={language==='zh'&&zh?zh.imageAlt:output.image.alt} fill className={`object-cover ${output.id === 'food-in-the-hood-podcast' ? 'object-top' : ''}`} />
+                {failedImage === output.image.src ? (
+                  <div className="flex h-full items-center justify-center p-6 text-center">
+                    <a href={output.image.src} className="text-accent-600 underline underline-offset-4 hover:text-accent-700">
+                      {language === 'zh' ? '查看原始项目图片' : 'View the original project image'}
+                    </a>
+                  </div>
+                ) : (
+                  <Image src={output.image.src} alt={language==='zh'&&zh?zh.imageAlt:output.image.alt} fill sizes="(min-width: 1024px) 66vw, 100vw" onError={() => setFailedImage(output.image.src)} className={`${output.image.fit === 'contain' ? 'object-contain bg-white' : 'object-cover'} ${output.id === 'food-in-the-hood-podcast' ? 'object-top' : ''}`} />
+                )}
               </div>
             )}
             {output.outlook && isHydrolysis && (
               <p className="mt-3 text-sm text-gray-600 leading-relaxed">{output.outlook}</p>
             )}
-            <div className="space-y-4 text-gray-700 leading-relaxed whitespace-pre-line">
+            <div className="mt-6 space-y-4 text-gray-700 leading-relaxed whitespace-pre-line">
               {output.intro && <p>{output.intro}</p>}
               <p>{language==='zh'&&zh?zh.description:output.description}</p>
               {output.outlook && !isHydrolysis && <p>{output.outlook}</p>}

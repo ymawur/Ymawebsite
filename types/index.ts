@@ -23,6 +23,7 @@ export interface Output {
   image: {
     src: string
     alt: string
+    fit?: 'cover' | 'contain'
   }
   links: OutputLink[]
   selected?: boolean

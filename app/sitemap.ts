@@ -2,6 +2,7 @@ import { getAllBlogPosts } from "@/lib/blog";
 import { getAllWritings, getWritingPath } from "@/lib/writings";
 import { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/site";
+import { outputs } from "@/data/outputs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();
@@ -31,5 +32,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...blogRoutes, ...writingRoutes];
+  const projectRoutes = outputs.map((output) => ({
+    url: `${siteUrl}/outputs/${output.id}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...projectRoutes, ...blogRoutes, ...writingRoutes];
 }

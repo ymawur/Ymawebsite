@@ -2,6 +2,23 @@ import { Output } from "@/types";
 
 export const outputs: Output[] = [
   {
+    id: "protein-adsorption",
+    title: "Protein adsorption: predicting across sources",
+    headline:
+      "A literature-derived dataset and modeling workflow for estimating how proteins adsorb at the air–water interface.",
+    description:
+      "Proteins need to reach newly formed bubble surfaces quickly when making foamed foods. In this project, I bring together 47 adsorption curves from 12 protein sources and 14 studies, harmonize the measurements, and describe each curve with a compact kinetic model. I then compare a composition-based kinetic predictor with TabPFN, a machine-learning model, by predicting protein sources excluded entirely from training.\n\nBoth approaches predict native seed-storage proteins from composition with similar accuracy. The useful finding is where prediction stops transferring: processing, colloidal state, and different biological protein classes weaken the relationship. The dataset and scripts offer a starting point for screening plant proteins, while predicting foam stability still requires additional measurements.",
+    image: {
+      src: "https://ars.els-cdn.com/content/image/1-s2.0-S0268005X26009343-ga1_lrg.jpg",
+      alt: "Graphical abstract showing the cross-source protein adsorption modeling workflow",
+      fit: "contain",
+    },
+    links: [
+      { label: "Paper", href: "https://doi.org/10.1016/j.foodhyd.2026.113352" },
+      { label: "Data and code", href: "https://git.wur.nl/yizhou.ma/meta-analysis-protein-adsorption" },
+    ],
+  },
+  {
     id: "chemopls",
     title: "chemopls: an agent-native toolkit for PLS",
     headline:

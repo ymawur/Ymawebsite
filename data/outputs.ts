@@ -2,6 +2,28 @@ import { Output } from "@/types";
 
 export const outputs: Output[] = [
   {
+    "id": "ai-agents-food-texture",
+    "title": "Predicting food texture with data and food-science knowledge",
+    "headline": "Comparing machine learning, similar experimental samples, and a knowledge-guided AI agent to predict food mechanical properties.",
+    "description": "Predicting a food’s texture from its recipe sounds straightforward until two similar formulations behave differently. Protein source, water distribution, and processing history all matter, and a small spreadsheet rarely captures the whole story. In this study, I compared machine learning, prediction from similar experimental samples, and an AI agent that combined those samples with curated food-science knowledge. The question was whether explicitly supplying what we know about food structure could help predict an unfamiliar formulation.\n\nThe agent was statistically comparable to the best machine-learning model for hardness and chewiness when the plant-based meat test formulations extended beyond the training range. In protein–polysaccharide mixtures, it achieved the lowest reported errors for both storage modulus (small-deformation stiffness) and maximum stress at 200% strain. For the latter, mean absolute error fell from 32.21 kPa with the best ML baseline to 17.21 kPa with the agent. Simply retrieving similar samples was less accurate than the full agent in both cases.\n\nWhat interests me here is the practical role of food-science knowledge: rules about network formation, moisture dilution, and brittle failure can supply context that composition numbers leave out. These were only two case studies, and the knowledge base still needed manual curation. I see this as a useful direction for formulation screening, with broader validation needed before relying on it across food systems.",
+    "image": {
+      "src": "https://ars.els-cdn.com/content/image/1-s2.0-S2665927126002789-ga1_lrg.jpg",
+      "alt": "Graphical abstract comparing machine learning, analogue retrieval, and a knowledge-guided AI agent for predicting food mechanical properties",
+      "fit": "contain"
+    },
+    "links": [
+      {
+        "label": "Paper",
+        "href": "https://doi.org/10.1016/j.crfs.2026.101578"
+      },
+      {
+        "label": "Data and code",
+        "href": "https://git.wur.nl/yizhou.ma/ml_vs_agent_texture_prediction"
+      }
+    ],
+    "selected": true
+  },
+  {
     id: "protein-adsorption",
     title: "Predicting protein adsorption across sources",
     headline:

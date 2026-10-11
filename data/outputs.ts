@@ -3,7 +3,7 @@ import { Output } from "@/types";
 export const outputs: Output[] = [
   {
     id: "protein-adsorption",
-    title: "Protein adsorption: predicting across sources",
+    title: "Predicting protein adsorption across sources",
     headline:
       "A literature-derived dataset and modeling workflow for estimating how proteins adsorb at the air–water interface.",
     description:
@@ -17,6 +17,7 @@ export const outputs: Output[] = [
       { label: "Paper", href: "https://doi.org/10.1016/j.foodhyd.2026.113352" },
       { label: "Data and code", href: "https://git.wur.nl/yizhou.ma/meta-analysis-protein-adsorption" },
     ],
+    selected: true,
   },
   {
     id: "chemopls",
@@ -109,7 +110,6 @@ s.addEventListener('input',()=>update(Number(s.value)));update(0);
         href: "https://open.spotify.com/show/04rulokx6auswo5gnhOqu9",
       },
     ],
-    selected: true,
   },
   {
     id: "ai-food-science-landscape-2025",

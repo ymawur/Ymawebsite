@@ -135,47 +135,6 @@ s.addEventListener('input',()=>update(Number(s.value)));update(0);
     selected: true,
   },
   {
-    id: "foundation-models-food-science",
-    title: "Foundation models and transfer learning for food science data",
-    headline:
-      "Using pre-trained protein, chemical and image models to predict peptide transport, taste and fibrousness.",
-    description:
-      "Experimental food science datasets are often small, which makes it hard to train good models from scratch. In this study with Qing Ren, Kasper Hettinga and Vincenzo Fogliano, I tested three ways of borrowing knowledge from pre-trained foundation models. A protein language model (ESM Cambrian) classified whether goat milk peptides cross a Caco-2 monolayer, reaching 0.89 accuracy and beating conventional peptide embeddings. A chemical language model (MolFormer) predicted sweet, bitter and umami molecules with 0.99 accuracy. A vision transformer (CLIP) predicted fibrousness in meat analogue images and improved on earlier image analysis, including for samples with complex appearance. Together they show one transfer-learning approach working across protein, chemical and image data.",
-    image: {
-      src: "/images/project-placeholder.svg",
-      alt: "Project placeholder graphic",
-    },
-    links: [
-      {
-        label: "Paper",
-        href: "https://doi.org/10.1016/j.ifset.2025.104247",
-      },
-      {
-        label: "Corrigendum",
-        href: "https://doi.org/10.1016/j.ifset.2025.104377",
-      },
-    ],
-    selected: true,
-  },
-  {
-    id: "automated-monitoring-food-additive-manufacturing",
-    title: "Automated monitoring and evaluation of 3D food printing",
-    headline:
-      "A book chapter on machine vision methods for monitoring extrusion, layer building and product quality in 3D-printed foods.",
-    description:
-      "As 3D food printing matures, it needs automated ways to monitor and evaluate the process, to cut labor and raise efficiency. In this chapter with Lu Zhang, we review methods used at different stages of printing, mostly built on machine vision, to characterize material extrusion, layer building and final product quality. These methods give rapid, quantitative, scalable measurements, and the data can feed predictive models for better control of printing. They also help with record keeping and with guiding new printing materials. The aim is to move 3D food printing from laboratory demonstrations toward easy-to-use, efficient production.",
-    image: {
-      src: "/images/project-placeholder.svg",
-      alt: "Project placeholder graphic",
-    },
-    links: [
-      {
-        label: "Chapter",
-        href: "https://doi.org/10.1201/9781032640068-19",
-      },
-    ],
-  },
-  {
     id: "food-in-the-hood-podcast",
     title: "Podcast: Food in the Hood",
     headline:

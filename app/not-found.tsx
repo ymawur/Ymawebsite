@@ -11,7 +11,7 @@ export default function NotFoundPage() {
         <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto"><LangText en="Sorry, we could not find the page you are looking for." zh="抱歉，未找到您访问的页面。" /></p>
         <div className="flex flex-wrap justify-center gap-3">
           <Button href="/"><LangText en="Go home" zh="返回首页" /></Button>
-          <Button href="/blog" variant="secondary"><LangText en="Read blog" zh="查看博客" /></Button>
+          <Button href="/writings" variant="secondary"><LangText en="Read writings" zh="查看写作" /></Button>
         </div>
       </Container>
     </section>

@@ -116,6 +116,26 @@ s.addEventListener('input',()=>update(Number(s.value)));update(0);
 </script></body></html>`,
   },
   {
+    id: "pinn-plant-protein-gelation",
+    title: "Physics-informed neural networks for plant protein gelation",
+    headline:
+      "Embedding gelation kinetics in a neural network to predict how plant protein gels form on heating.",
+    description:
+      "Plant proteins form gels when heated, and how fast and how firmly they do so shapes the texture of plant-based foods. Predicting this across protein types and concentrations is hard because the temperature and concentration effects are nonlinear. In this work with Jiayi Chu and Taniya Kapoor, we built a physics-informed neural network that enforces a gelation kinetics equation during training. We compiled 38 gelation curves from 20 plant protein variants, from 1% to 20% (w/w), and compared the network with XGBoost and TabPFN. When interpolating, the network was comparable to both and gave smoother, physically coherent curves. When extrapolating, it beat XGBoost but not TabPFN. Its learned gelation temperature stayed within 2.1 °C of calorimetry onset temperatures, although this is partly inherited from how it was initialised. The network trades a little point-wise accuracy for physically sensible trajectories.\n\nFigure: Fig. 1 from Chu, Kapoor and Ma, Future Foods 2026, \u00a9 2026 The Authors, licensed under CC BY 4.0 (creativecommons.org/licenses/by/4.0).",
+    image: {
+      src: "https://ars.els-cdn.com/content/image/1-s2.0-S2666833526003072-gr1_lrg.jpg",
+      alt: "Schematic of the physics-informed neural network architecture for plant protein gelation kinetics (Fig. 1 of the paper)",
+      fit: "contain",
+    },
+    links: [
+      {
+        label: "Paper",
+        href: "https://doi.org/10.1016/j.fufo.2026.101207",
+      },
+    ],
+    selected: true,
+  },
+  {
     id: "food-in-the-hood-podcast",
     title: "Podcast: Food in the Hood",
     headline:

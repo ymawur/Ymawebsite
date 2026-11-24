@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Card } from "@/components/Card";
+import { Button } from "@/components/Button";
 import { outputs } from "@/data/outputs";
 import { useLanguage } from "@/components/LanguageProvider";
 import { outputsZh } from "@/lib/translations";
@@ -15,12 +16,9 @@ const socialLinks = [
     label: "Scholar",
     href: "https://scholar.google.com/citations?user=LTcsUgcAAAAJ&hl=en",
   },
-  {
-    label: "Contact",
-    labelZh: "联系我",
-    href: "https://www.wur.nl/en/persons/y-yizhou-ma-phd",
-  },
 ];
+
+const contactHref = "https://www.wur.nl/en/persons/y-yizhou-ma-phd";
 
 export function HomePageClient() {
   const selectedOutputs = outputs.filter((o) => o.selected).slice(0, 3);
@@ -49,9 +47,12 @@ export function HomePageClient() {
                     rel="noopener noreferrer"
                     className="text-sm font-medium text-accent-700 hover:text-accent-800 transition-colors"
                   >
-                    {language === "zh" && link.labelZh ? link.labelZh : link.label}
+                    {link.label}
                   </a>
                 ))}
+                <Button href={contactHref} size="sm">
+                  {language === "zh" ? "联系我" : "Contact me"}
+                </Button>
               </div>
               <p className="text-gray-700 leading-relaxed mb-8">
                 {language === "zh"
@@ -80,9 +81,12 @@ export function HomePageClient() {
                     rel="noopener noreferrer"
                     className="text-sm font-medium text-accent-700 hover:text-accent-800 transition-colors"
                   >
-                    {language === "zh" && link.labelZh ? link.labelZh : link.label}
+                    {link.label}
                   </a>
                 ))}
+                <Button href={contactHref} size="sm">
+                  {language === "zh" ? "联系我" : "Contact me"}
+                </Button>
               </div>
             </div>
           </div>

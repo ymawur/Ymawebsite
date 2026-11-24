@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Card } from "@/components/Card";
+import { Button } from "@/components/Button";
 import { outputs } from "@/data/outputs";
 import { useLanguage } from "@/components/LanguageProvider";
 import { outputsZh } from "@/lib/translations";
@@ -16,6 +17,8 @@ const socialLinks = [
     href: "https://scholar.google.com/citations?user=LTcsUgcAAAAJ&hl=en",
   },
 ];
+
+const contactHref = "https://www.wur.nl/en/persons/y-yizhou-ma-phd";
 
 export function HomePageClient() {
   const selectedOutputs = outputs.filter((o) => o.selected).slice(0, 3);
@@ -47,6 +50,9 @@ export function HomePageClient() {
                     {link.label}
                   </a>
                 ))}
+                <Button href={contactHref} size="sm">
+                  {language === "zh" ? "联系我" : "Contact me"}
+                </Button>
               </div>
               <p className="text-gray-700 leading-relaxed mb-8">
                 {language === "zh"
@@ -78,6 +84,9 @@ export function HomePageClient() {
                     {link.label}
                   </a>
                 ))}
+                <Button href={contactHref} size="sm">
+                  {language === "zh" ? "联系我" : "Contact me"}
+                </Button>
               </div>
             </div>
           </div>

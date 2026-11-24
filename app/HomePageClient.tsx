@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Card } from "@/components/Card";
-import { Button } from "@/components/Button";
 import { outputs } from "@/data/outputs";
 import { useLanguage } from "@/components/LanguageProvider";
 import { outputsZh } from "@/lib/translations";
@@ -15,6 +14,11 @@ const socialLinks = [
   {
     label: "Scholar",
     href: "https://scholar.google.com/citations?user=LTcsUgcAAAAJ&hl=en",
+  },
+  {
+    label: "Contact",
+    labelZh: "联系我",
+    href: "https://www.wur.nl/en/persons/y-yizhou-ma-phd",
   },
 ];
 
@@ -45,7 +49,7 @@ export function HomePageClient() {
                     rel="noopener noreferrer"
                     className="text-sm font-medium text-accent-700 hover:text-accent-800 transition-colors"
                   >
-                    {link.label}
+                    {language === "zh" && link.labelZh ? link.labelZh : link.label}
                   </a>
                 ))}
               </div>
@@ -54,9 +58,6 @@ export function HomePageClient() {
                   ? "我在荷兰瓦赫宁根大学（WUR）从事食品科学领域的自动化与AI研究。我的职业追求源于对问题成因的深入剖析和开发提升效率的工具。我的研究领域聚焦于实验室自动化、AI智能体的食品配方设计，以及食品材料结构的表征学习。"
                   : "Automation & AI in Food Science at WUR. My professional pursuits are driven by dissecting causes of problems and building tools to increase capacity. In my research, I work on lab automation of solid food testing, agentic food formulation, and structural representation of food materials."}
               </p>
-              <Button href="https://www.wur.nl/en/persons/y-yizhou-ma-phd">
-                {language === "zh" ? "联系我" : "Contact me"}
-              </Button>
             </div>
             <div className="flex-shrink-0 md:ml-auto">
               <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-lg bg-accent-50">
@@ -79,7 +80,7 @@ export function HomePageClient() {
                     rel="noopener noreferrer"
                     className="text-sm font-medium text-accent-700 hover:text-accent-800 transition-colors"
                   >
-                    {link.label}
+                    {language === "zh" && link.labelZh ? link.labelZh : link.label}
                   </a>
                 ))}
               </div>
